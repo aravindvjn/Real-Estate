@@ -2,6 +2,9 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { IoArrowForward } from "react-icons/io5";
 import { footerContent } from "./footer-links";
+import Link from "next/link";
+import { BsApple } from "react-icons/bs";
+import { BiLogoPlayStore } from "react-icons/bi";
 
 function Footer() {
   return (
@@ -42,7 +45,9 @@ function Footer() {
                 <ul className="flex flex-col gap-1.5">
                   {content.links.map((link, linkIndex) =>
                     link?.href ? (
-                      <li key={linkIndex}>{link.label}</li>
+                      <li key={linkIndex}>
+                        <Link href={link?.href}>{link.label}</Link>
+                      </li>
                     ) : (
                       <li key={linkIndex}>{link.label}</li>
                     )
@@ -51,6 +56,27 @@ function Footer() {
               </div>
             );
           })}
+          <div className="flex flex-col gap-2 text-[10px]">
+            <h3 className="opacity-60 text-[12px]">Get the app</h3>
+            <Link href="/">
+              <button className="px-2 py-1 rounded flex items-center gap-2 bg-[#3c3c3c] text-white w-[110px]">
+                <BsApple size={14} />
+                <div className="border-l pl-2">
+                  <p className="text-[8px]">Download on the </p>
+                  <p>App Store</p>
+                </div>
+              </button>
+            </Link>
+            <Link href="/">
+              <button className="px-2 py-1 rounded flex gap-2 bg-[#3c3c3c] w-[110px] items-center">
+                <BiLogoPlayStore size={14} />
+                <div className="border-l pl-2">
+                  <p className="text-[8px]">Get in on </p>
+                  <p>Google Play</p>
+                </div>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
       <div>

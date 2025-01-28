@@ -9,6 +9,7 @@
   --white-0: #ffffff;
   --white-1: #F6F8FA;
   --foreground: #171717;
+  --green-1: #1F4B43
 }
 
 /* @media (prefers-color-scheme: dark) {
@@ -21,5 +22,5 @@
 body {
   color: var(--foreground);
   background: var(--white);
-  font-family: 'Roboto',Helvetica, sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
 }

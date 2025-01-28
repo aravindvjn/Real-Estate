@@ -4,6 +4,7 @@ import HeaderDropDown from "./header-dropdown";
 import { options } from "./options";
 import SearchInput from "./search-input";
 import { VscAccount } from "react-icons/vsc";
+import AccountCircle from "../header/accountCircle";
 
 function HeroSection() {
   return (
@@ -19,9 +20,7 @@ function HeroSection() {
         <HeaderDropDown options={options} />
         <div className="flex gap-2 sm:gap-3 items-center">
           <p className="hidden md:flex">+6893788736</p>
-          <button>
-            <VscAccount size={18} />
-          </button>
+          <AccountCircle />
           <button className="px-2 border rounded-full">Add Property</button>
         </div>
       </div>
