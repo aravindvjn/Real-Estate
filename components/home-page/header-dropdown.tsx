@@ -6,11 +6,14 @@ export type HeaderDropDownProps = {
 };
 function HeaderDropDown({ options }: HeaderDropDownProps) {
   return (
-    <ul className="sm:flex gap-2 md:gap-3 lg:gap-5 hidden">
+    <div className="sm:flex gap-2 md:gap-3 lg:gap-5 hidden">
       {options?.map((option, index) => (
-        <li key={index}>{option.label}</li>
+        <button className="flex items-center" key={index}>
+          {option.label}
+          <IoMdArrowDropdown />
+        </button>
       ))}
-    </ul>
+    </div>
   );
 }
 

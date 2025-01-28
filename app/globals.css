@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --white: #ffffff;
+  --white-0: #ffffff;
   --white-1: #F6F8FA;
   --foreground: #171717;
 }
@@ -18,5 +21,5 @@
 body {
   color: var(--foreground);
   background: var(--white);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Roboto',Helvetica, sans-serif;
 }
