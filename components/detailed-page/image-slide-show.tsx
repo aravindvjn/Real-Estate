@@ -26,11 +26,10 @@ const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
     "bg-white/20 rounded h-10 w-10 md:h-16 md:w-16 flex justify-center items-center text-white backdrop-blur-lg";
 
   return (
-    <div className="relative flex md:w-3/5 gap-3">
+    <div className="relative flex md:w-3/5 gap-3 z-0 ">
       <Image
         src={image_urls[currentIndex] || image_urls[0]}
         className="rounded w-full aspect-[4/3] object-cover"
-        loading="lazy"
         alt="property image"
         height={width}
         width={width}
