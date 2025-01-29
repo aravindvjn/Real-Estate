@@ -1,36 +1,21 @@
 "use client";
-import React, { useActionState, useRef, useState } from "react";
+import React, { useActionState, useEffect, useState } from "react";
 import Input from "../ui/input";
 import Container from "../ui/container";
 import { createUser } from "@/lib/actions/create-user";
-import Image from "next/image";
+import PreviewImage from "../helpers/preview-image";
 
 const CreateUser = ({ session }: any) => {
   const [selectedImage, setSelectedImage] = useState<any>();
-  const imageRef = useRef(null);
-  const [state, formAction, isPending] = useActionState(createUser, {
-    message: [""],
-  });
-
-  const pickImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files?.length > 0) {
-      const image = event.target.files[0];
-      if (!image.type.startsWith("image/")) {
-        alert("Please select a valid image.");
-        return;
-      }
-      setSelectedImage(image);
+  const [state, formAction, isPending] = useActionState(
+    createUser.bind(null, selectedImage),
+    {
+      message: [""],
     }
-  };
-
-  const triggerImageHandler = () => {
-    imageRef.current?.click();
-  };
-
-  const imageURL = selectedImage
-    ? URL.createObjectURL(selectedImage)
-    : session?.user?.image;
-
+  );
+  useEffect(() => {
+    console.log(selectedImage);
+  }, [selectedImage, setSelectedImage]);
   return (
     <Container center className="min-h-dvh bg-white-1 w-full px-5">
       <form
@@ -38,21 +23,10 @@ const CreateUser = ({ session }: any) => {
         className="p-5 rounded flex flex-col gap-2 text-[12px] w-full sm:max-w-[400px]"
       >
         <label htmlFor="image">Profile Picture</label>
-        <input
-          ref={imageRef}
-          name="profile_picture_url"
-          type="file"
-          hidden
-          value={undefined}
-          accept="image/jpeg, image/png"
-          onChange={pickImageHandler}
-        />
-        <Image
-          src={imageURL}
-          height={200}
-          width={200}
-          onClick={triggerImageHandler}
-          alt="profile picture"
+        <PreviewImage
+          selectedImage={selectedImage}
+          setSelectedImage={setSelectedImage}
+          initialImage={session?.user?.image}
         />
         <Input placeholder="First Name" name="first_name" required />
         <Input placeholder="Last Name" name="last_name" required />

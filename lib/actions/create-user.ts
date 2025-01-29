@@ -4,10 +4,10 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '../authOptions';
 import { redirect } from 'next/navigation';
 import { query } from '@/lib/db';
+import { imageUpload } from './imageUpload';
 
-export const createUser = async (prevState: { message: string[] }, formData: FormData) => {
+export const createUser = async (selectedImage: string[], prevState: { message: string[] }, formData: FormData) => {
   const session = await getServerSession(authOptions);
-
   if (!session || !session?.isNewUser) {
     redirect('/');
   }
@@ -16,10 +16,9 @@ export const createUser = async (prevState: { message: string[] }, formData: For
   const lastName = formData.get('last_name')?.toString().trim();
   const phoneNumber = formData.get('phone_number')?.toString().trim() || null;
   const email = session.user?.email;
-  const profilePictureUrl = formData.get('profile_picture_url')?.toString().trim() || session.user?.image || null;
   const role = formData.get('role')?.toString().trim();
   const location = formData.get('location')?.toString().trim() || null;
-  const preferences = null; // Extendable for JSON preferences
+  const preferences = null;
 
   const returnState: string[] = [];
 
@@ -34,12 +33,22 @@ export const createUser = async (prevState: { message: string[] }, formData: For
     returnState.push('Role must be buyer, seller, or agent.');
   }
 
+
+  let profilePictureUrl = session.user?.image || null;
+  if (selectedImage && selectedImage?.length > 0) {
+    const res = await imageUpload(selectedImage)
+    if (res.length > 0) {
+      profilePictureUrl = res[0]
+    } else {
+      returnState.push('Failed to upload profile picture.')
+    }
+  }
+
   if (returnState.length > 0) {
     return {
       message: returnState,
     };
   }
-
   // Insert Query
   const queryText = `
     INSERT INTO users (
@@ -74,8 +83,8 @@ export const createUser = async (prevState: { message: string[] }, formData: For
       return {
         message: ['Failed to create user.'],
       };
-    }else{
-      session!.user!.isNewUser = false; 
+    } else {
+      session!.user!.isNewUser = false;
     }
   } catch (error) {
     console.error('Error inserting user:', error);

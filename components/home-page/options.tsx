@@ -2,32 +2,6 @@ import BuyOrRentHome from "@/assets/svg/BuyOrRentHome";
 import Properties from "@/assets/svg/Properties";
 import Trust from "@/assets/svg/Trust";
 
-//drop down options
-export const options = [
-  {
-    label: "Home",
-    dropdown: [],
-  },
-  {
-    label: "Listings",
-    dropdown: [],
-  },
-  {
-    label: "Members",
-    dropdown: [],
-  },
-  {
-    label: "Blog",
-    dropdown: [],
-  },
-  {
-    label: "Pages",
-    dropdown: [],
-  },
-  {
-    label: "Contact",
-  },
-];
 
 //Description Data
 export const description = [

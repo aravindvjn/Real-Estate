@@ -12,8 +12,10 @@ async function Suggestions() {
   }
 
   return (
-    <div className="flex justify-center flex-col items-center my-1 rounded py-[50px] px-0 sm:px-[50px] md:px-[100px] lg:px-[200px]">
-      <p className="text-sm font-semibold">Homes For You</p>
+    <div id="homesforyou" className="flex justify-center flex-col items-center my-1 rounded py-[50px] px-0 sm:px-[50px] md:px-[100px] lg:px-[200px]">
+      <p className="text-sm font-semibold" >
+        Homes For You
+      </p>
       <p className="text-[10px]">Based on your view history</p>
       <div className="mt-5 flex overflow-x-scroll sm:overflow-hidden sm:grid grid-cols-3 gap-2 md:gap-4  lg:gap-6 items-center w-full pl-2 sm:pl-0">
         {properties.map((property) => (

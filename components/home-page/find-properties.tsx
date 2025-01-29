@@ -5,7 +5,10 @@ import image from "@/assets/images/image-6.jpg";
 
 function FindPropertiesByCities() {
   return (
-    <div className="grid grid-cols-3 gap-2 lg:grid-cols-4 sm:gap-3 md:gap-4 px-[10px] sm:px-[50px] md:px-[100px] lg:px-[200px] mb-[100px]">
+    <div
+      id="cities"
+      className="grid grid-cols-3 gap-2 lg:grid-cols-4 sm:gap-3 md:gap-4 px-[10px] sm:px-[50px] md:px-[100px] lg:px-[200px] mb-[100px]"
+    >
       {properties.map((property, index) => {
         return (
           <SingleCell
