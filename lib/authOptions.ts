@@ -21,8 +21,6 @@ export const authOptions: NextAuthOptions = {
         async jwt({ token, account, profile }: { token: JWT; account?: any; profile?: any }) {
             if (account?.provider && profile) {
                 try {
-                    console.log(`Checking if user exists: ${profile.email}`);
-
                     const existingUser = await query(
                         'SELECT user_id, profile_picture_url FROM users WHERE email = $1',
                         [profile.email]

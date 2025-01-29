@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
+import imageCompression from "browser-image-compression";
 import { BiArrowBack } from "react-icons/bi";
 import { IoArrowForward } from "react-icons/io5";
 
@@ -9,6 +10,7 @@ type PreviewImageProps = {
   selectedImage: string[];
   initialImage?: string;
   multiple?: boolean;
+  minimum?: number;
 };
 
 const PreviewImage = ({
@@ -16,26 +18,43 @@ const PreviewImage = ({
   selectedImage = [],
   initialImage,
   multiple,
+  minimum,
 }: PreviewImageProps) => {
   const imageRef = useRef<HTMLInputElement | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const pickImageHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const compressImage = async (file: File) => {
+    const options = {
+      maxSizeMB: 0.5, 
+      maxWidthOrHeight: 1024, 
+      useWebWorker: true,
+    };
+
+    try {
+      const compressedFile = await imageCompression(file, options);
+      return await new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result as string);
+        reader.readAsDataURL(compressedFile);
+      });
+    } catch (error) {
+      console.error("Image compression failed:", error);
+      return null;
+    }
+  };
+
+  const pickImageHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (files && files.length > 0) {
-      const imagesArray: string[] = [];
+      const compressedImages = await Promise.all(
+        Array.from(files).map((file) => compressImage(file))
+      );
 
-      const readFile = (file: File) =>
-        new Promise<string>((resolve) => {
-          const reader = new FileReader();
-          reader.onloadend = () => resolve(reader.result as string);
-          reader.readAsDataURL(file);
-        });
+      // Filter out any failed compression results
+      const validImages = compressedImages.filter((img): img is string => img !== null);
 
-      Promise.all(Array.from(files).map(readFile)).then((images) => {
-        setSelectedImage(images);
-        setCurrentImageIndex(0);
-      });
+      setSelectedImage(validImages);
+      setCurrentImageIndex(0);
     }
   };
 
@@ -56,15 +75,12 @@ const PreviewImage = ({
   };
 
   const displayImage =
-    selectedImage.length > 0
-      ? selectedImage[currentImageIndex]
-      : initialImage || "/hero-background.jpg";
+    selectedImage.length > 0 ? selectedImage[currentImageIndex] : initialImage;
 
   return (
     <div>
       <input
         ref={imageRef}
-        name="profile_picture_url"
         type="file"
         hidden
         multiple={multiple}
@@ -73,13 +89,23 @@ const PreviewImage = ({
       />
       <div className="flex gap-3 items-end">
         {displayImage && (
-          <Image
-            src={displayImage}
-            height={200}
-            width={200}
-            onClick={triggerImageHandler}
-            alt="profile picture"
-          />
+          <div className="flex-col">
+            {minimum && selectedImage.length < minimum && (
+              <p className="text-red-500">Minimum {minimum} images are required.</p>
+            )}
+            <Image
+              src={displayImage}
+              className={
+                minimum && selectedImage.length >= minimum
+                  ? ""
+                  : "border-2 border-red-500"
+              }
+              height={200}
+              width={200}
+              onClick={triggerImageHandler}
+              alt="Selected Image"
+            />
+          </div>
         )}
         <button
           type="button"
@@ -89,7 +115,7 @@ const PreviewImage = ({
           {displayImage
             ? "Change Selection"
             : multiple
-            ? "Select Images"
+            ? `Select Images (minimum ${minimum} images)`
             : "Select An Image"}
         </button>
       </div>

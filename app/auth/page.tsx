@@ -4,7 +4,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <Container center className="h-screen">
+    <Container center className="h-screen from-green-1 to-blue-600 bg-gradient-to-br">
       <AuthPage />
     </Container>
   );

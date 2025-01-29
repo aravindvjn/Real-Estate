@@ -64,12 +64,11 @@ export const headerLinks: HeaderLinkType[] = [
     {
         name: 'Contact',
         list: [
-            { text: 'Home', href: '/' },
-            { text: 'Why You Should Work With Us', href: '/#whyshouldworkwithus' },
-            { text: 'Homes for you', href: '/#homesforyou' },
-            { text: 'Cities', href: '/#cities' },
-            { text: 'Home', href: '/' },
-            { text: 'Home', href: '/' },
+            { text: 'Instagram', href: 'https://instagram.com/6windh' },
+            { text: 'GitHub', href: 'https://github.com/aravindvjn' },
+            { text: 'LinkedIn', href: '/' },
+            { text: 'Mail', href: 'mailto:aravind284479@gmail.com' },
+
         ]
     },
 ]

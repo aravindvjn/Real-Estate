@@ -1,31 +1,27 @@
 "use client";
-import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React, { useRef, useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { VscAccount } from "react-icons/vsc";
+import { BasicUserDataType } from "./type";
+import UserPopDetails from "./user-pop-detail";
+import SignButtons from "./sign-buttons";
 
-function AccountCircle() {
+function AccountCircle({ user }: { user: BasicUserDataType }) {
   const [showMenu, setShowMenu] = useState(false);
-  const session = useSession();
-  const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Toggle menu visibility
   const toggleMenu = () => setShowMenu((prev) => !prev);
 
-  // Get button position for menu placement
   const getButtonPosition = () => {
     if (!buttonRef.current) return { top: 0, left: 0 };
     const rect = buttonRef.current.getBoundingClientRect();
     return {
-      top: rect.bottom + window.scrollY, 
-      left: rect.left + window.scrollX - 90, 
+      top: rect.bottom + window.scrollY,
+      left: rect.left + window.scrollX - 90,
     };
   };
-
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -52,22 +48,26 @@ function AccountCircle() {
     };
   }, [showMenu]);
 
-  const user = session.data?.user;
+  const profile = user?.profile_picture_url ? (
+    <Image
+      className="h-[20px] w-[20px] rounded-full"
+      src={user?.profile_picture_url}
+      width={30}
+      height={30}
+      alt="profile-pic"
+    />
+  ) : (
+    <VscAccount size={20} />
+  );
 
   return (
     <>
-      <button ref={buttonRef} onClick={toggleMenu} className="flex items-center">
-        {user?.image ? (
-          <Image
-            className="h-[20px] w-[20px] rounded-full"
-            src={user?.image}
-            width={30}
-            height={30}
-            alt="profile-pic"
-          />
-        ) : (
-          <VscAccount size={20} />
-        )}
+      <button
+        ref={buttonRef}
+        onClick={toggleMenu}
+        className="flex items-center"
+      >
+        {profile}
       </button>
 
       {showMenu &&
@@ -80,29 +80,7 @@ function AccountCircle() {
               left: getButtonPosition().left,
             }}
           >
-            {user?.email ? (
-              <button
-                onClick={() => signOut()}
-                className="px-2 py-1 border w-[80px] bg-white-1 rounded hover:bg-white"
-              >
-                Sign Out
-              </button>
-            ) : (
-              <>
-                <button
-                  onClick={() => router.push("/auth")}
-                  className="px-2 py-1 border w-[80px] bg-white-1 rounded hover:bg-white"
-                >
-                  Sign Up
-                </button>
-                <button
-                  onClick={() => router.push("/auth")}
-                  className="px-2 py-1 border w-[80px] bg-white-1 rounded hover:bg-white"
-                >
-                  Sign In
-                </button>
-              </>
-            )}
+            {user?.email ? <UserPopDetails {...user} /> : <SignButtons />}
           </div>,
           document.body
         )}

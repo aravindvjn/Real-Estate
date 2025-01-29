@@ -1,5 +1,5 @@
 'use server';
-
+import xss from 'xss'
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../authOptions';
 import { redirect } from 'next/navigation';
@@ -8,16 +8,18 @@ import { imageUpload } from './imageUpload';
 
 export const createUser = async (selectedImage: string[], prevState: { message: string[] }, formData: FormData) => {
   const session = await getServerSession(authOptions);
+  console.log(session)
+
   if (!session || !session?.isNewUser) {
     redirect('/');
   }
 
-  const firstName = formData.get('first_name')?.toString().trim();
-  const lastName = formData.get('last_name')?.toString().trim();
-  const phoneNumber = formData.get('phone_number')?.toString().trim() || null;
+  const firstName = xss(formData.get('first_name')?.toString().trim() || '');
+  const lastName = xss(formData.get('last_name')?.toString().trim() || '');
+  const phoneNumber = xss(formData.get('phone_number')?.toString().trim() || '');
   const email = session.user?.email;
-  const role = formData.get('role')?.toString().trim();
-  const location = formData.get('location')?.toString().trim() || null;
+  const role = xss(formData.get('role')?.toString().trim() || '');
+  const location = xss(formData.get('location')?.toString().trim() || '');
   const preferences = null;
 
   const returnState: string[] = [];
@@ -49,7 +51,7 @@ export const createUser = async (selectedImage: string[], prevState: { message: 
       message: returnState,
     };
   }
-  // Insert Query
+
   const queryText = `
     INSERT INTO users (
       first_name,

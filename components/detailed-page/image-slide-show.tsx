@@ -5,11 +5,9 @@ import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
 const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-
   let width = window.innerWidth;
 
   const no_images = image_urls?.length;
-
   const changeImageHandler = (forward: boolean) => {
     if (forward) {
       setCurrentIndex((prev) => {
@@ -37,14 +35,14 @@ const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
       <div className="absolute left-0 md:left-2  md:px-5 w-full flex top-1/2 -translate-y-1/2 justify-between">
         <button
           disabled={currentIndex === 0}
-          onClick={changeImageHandler.bind(null, true)}
+          onClick={changeImageHandler.bind(null, false)}
           className={`${classes} ${currentIndex === 0 ? "invisible" : ""}`}
         >
           <IoArrowBack size={30} />
         </button>
         <button
           disabled={currentIndex === no_images - 1}
-          onClick={changeImageHandler.bind(null, false)}
+          onClick={changeImageHandler.bind(null, true)}
           className={`${classes} ${
             currentIndex === no_images - 1 ? "invisible" : ""
           }`}

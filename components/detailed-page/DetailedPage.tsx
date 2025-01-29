@@ -6,9 +6,11 @@ import { FaBed, FaBath } from "react-icons/fa";
 import { IoLocation } from "react-icons/io5";
 import { PiGarageFill } from "react-icons/pi";
 import { LuLandPlot } from "react-icons/lu";
+
 type DetailedPageProps = {
   property: PropertyTypes;
 };
+
 const DetailedPage = ({ property }: DetailedPageProps) => {
   let additionalFeatures = [];
 
