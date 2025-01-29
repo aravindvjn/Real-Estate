@@ -1,11 +1,18 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
 const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  let width = window.innerWidth;
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const no_images = image_urls?.length;
   const changeImageHandler = (forward: boolean) => {
@@ -27,12 +34,12 @@ const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
     <div className="relative flex md:w-3/5 gap-3 z-0 ">
       <Image
         src={image_urls[currentIndex] || image_urls[0]}
-        className="rounded w-full aspect-[4/3] object-cover"
+        className="rounded overflow-hidden w-full aspect-[4/3] object-cover"
         alt="property image"
         height={width}
         width={width}
       />
-      <div className="absolute left-0 md:left-2  md:px-5 w-full flex top-1/2 -translate-y-1/2 justify-between">
+      <div className="absolute left-0  md:px-5 w-full flex top-1/2 -translate-y-1/2 justify-between">
         <button
           disabled={currentIndex === 0}
           onClick={changeImageHandler.bind(null, false)}

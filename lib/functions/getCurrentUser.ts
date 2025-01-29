@@ -11,8 +11,9 @@ export const getCurrentUser = async (onlyBasicData?: boolean) => {
         }
         const email = session.user.email;
         const queryCode = onlyBasicData ? "SELECT user_id,profile_picture_url,email,first_name,last_name FROM users WHERE email = $1" : "SELECT * FROM users WHERE email = $1"
+        
         const results = await query(queryCode, [email])
-        console.log(results.rows)
+
         if (results.rows.length > 0) {
             return results.rows[0];
         }

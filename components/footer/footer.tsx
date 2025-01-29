@@ -28,7 +28,7 @@ function Footer() {
         </div>
       </div>
       <div className="w-full">
-        <div className="flex gap-8 justify-between">
+        <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-8 justify-between">
           <div className="flex flex-col gap-2 items-start  w-1/5">
             <button className="opacity-60">Subscribe</button>
             <div className="flex gap-10 items-center justify-between">
@@ -38,6 +38,7 @@ function Footer() {
               </button>
             </div>
           </div>
+          <div className="sm:hidden"></div>
           {footerContent.map((content, index) => {
             return (
               <div key={index} className="flex flex-col gap-2">

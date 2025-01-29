@@ -1,4 +1,5 @@
 import DetailedPage from "@/components/detailed-page/DetailedPage";
+import Footer from "@/components/footer/footer";
 import HeaderNav from "@/components/header/header-nav";
 import { getPropertyById } from "@/lib/functions/getPropertyById";
 import { notFound } from "next/navigation";
@@ -13,15 +14,15 @@ async function Page({ params }: ParamsType) {
     notFound();
   }
   const property = await getPropertyById(id);
-
   if (!property) {
     notFound();
   }
 
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <HeaderNav />
       <DetailedPage property={property} />
+      <Footer />
     </div>
   );
 }
