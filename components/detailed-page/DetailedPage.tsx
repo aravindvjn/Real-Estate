@@ -31,6 +31,7 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
           image={property.image_urls[0]}
           price={property.price}
           title={property.title}
+          type={property.type}
         />
         <div className="px-5 md:px-10 pb-5 text-sm md:text-lg">
           <PropertyDetails {...property} />

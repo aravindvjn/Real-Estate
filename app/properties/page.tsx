@@ -9,17 +9,42 @@ type ParamsProps = {
     category: "luxury" | "new";
     location: string;
     search: string;
+    bedroom: number;
+    bathroom: number;
+    garage: number;
+    minPrice: number;
+    maxPrice: number;
+    size: number;
   };
 };
 
 const Page = async ({ searchParams }: ParamsProps) => {
-  const { type, category, location, search } = await searchParams;
-  const properties = await getFilteredProperties({
+  const {
     type,
-    category,
     location,
     search,
+    category,
+    bedroom,
+    bathroom,
+    garage,
+    minPrice,
+    maxPrice,
+    size,
+  } = await searchParams;
+
+  const properties = await getFilteredProperties({
+    type,
+    location,
+    search,
+    category,
+    bedroom,
+    bathroom,
+    garage,
+    minPrice,
+    maxPrice,
+    size,
   });
+
   return (
     <div>
       <HeaderNav />

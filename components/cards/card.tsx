@@ -16,6 +16,7 @@ function Card({
   price,
   location,
   id,
+  type,
 }: PropertyTypes) {
   return (
     <Link
@@ -25,8 +26,12 @@ function Card({
         backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${image_urls[0]})`,
       }}
     >
-      <button className="text-[10px] self-start px-2 flex items-center h-6 rounded-lg bg-green-700 text-white font-semibold">
-        FOR SALE
+      <button
+        className={`text-[10px] self-start px-2 flex items-center h-6 rounded-lg ${
+          type === "rent" ? "bg-blue-500" : "bg-green-700"
+        } text-white font-semibold uppercase`}
+      >
+        FOR {type}
       </button>
       <div className="p-2 bg-white flex flex-col rounded-md gap-0.5 md:gap-1.5">
         <p className="font-semibold ">{title}</p>
