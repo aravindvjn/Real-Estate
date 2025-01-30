@@ -28,7 +28,7 @@ const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
   };
 
   const classes =
-    "bg-white/20 rounded h-10 w-10 md:h-16 md:w-16 flex justify-center items-center text-white backdrop-blur-lg";
+    "bg-black/40 rounded h-10 w-10 md:h-16 md:w-16 flex justify-center items-center text-white backdrop-blur-lg";
 
   return (
     <div className="relative flex md:w-3/5 gap-3 z-0 ">

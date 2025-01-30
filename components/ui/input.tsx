@@ -12,7 +12,7 @@ const Input = ({
   ...props
 }: InputProps) => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-1" >
       <label className="capitalize" htmlFor={name}>
         {placeholder || name}
       </label>

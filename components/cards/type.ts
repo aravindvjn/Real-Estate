@@ -27,5 +27,7 @@ export type PropertyTypes = {
     features: string[],
     created_at: string;
     updated_at: string;
-    owner_id?: string
+    owner_id: string;
+    description: string;
+    type: 'rent' | 'sale'
 }

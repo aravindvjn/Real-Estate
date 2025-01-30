@@ -33,14 +33,34 @@ const AddPropertyForm = () => {
         <Input name="bedrooms" type="number" required />
         <Input name="bathrooms" type="number" required />
         <Input name="garage" type="number" required />
-        <Input name="size in sq.mtr" type="number" required />
-        <Input name="price" type="number" required />
+        <Input name="size in sq.ft" type="number" required />
+        <div className="flex flex-col">
+          <label htmlFor="type">Type</label>
+          <select
+            required
+            id="type"
+            className="px-3 py-2 rounded-lg border"
+            defaultValue="Select a role"
+            name="role"
+          >
+            <option disabled value="Select a role">
+              Select a type
+            </option>
+            <option value="sale">Sale</option>
+            <option value="rent">Rent</option>
+          </select>
+        </div>
         <Input
           name="features"
           type="text"
           onlyPlaceholder="Pool Area, Balcony etc"
           required
         />
+        <div className="flex flex-col">
+          <label htmlFor="description">Description</label>
+          <textarea id="description" name="description" placeholder="About the property..." className="rounded-lg border px-3 py-2" />
+        </div>
+        <Input name="price" type="number" required />
         {state?.message.length > 0 &&
           state?.message?.map((msg, index) => (
             <p className="text-red-500" key={index}>

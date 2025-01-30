@@ -25,13 +25,14 @@ export const addProperty = async (
     const size = Number(formData.get("size in sq.mtr"));
     const price = Number(formData.get("price"));
     const features = xss(formData.get("features") as string);
+    const type = xss(formData.get("type") as string);
+    const description = xss(formData.get("description") as string);
 
 
-    if (!title || !location || !bathrooms || !bedrooms || !garage || !size || !price || !features) {
+    if (!title || !location || !bathrooms || !bedrooms || !garage || !size || !price || !features || !type || !description) {
         prev.message.push("All fields are required.");
         return prev;
     }
-
     if (selectedImage.length < 2) {
         prev.message.push("Please select at least two images.");
         return prev;
@@ -46,37 +47,39 @@ export const addProperty = async (
             return prev;
         }
 
-        let image_urls:string[] = await imageUpload(selectedImage)
+        let image_urls: string[] = await imageUpload(selectedImage)
 
         if (image_urls.length < 2) {
             prev.message.push("Failed to upload images.");
             return prev;
         }
-        
+
         const sanitizedImages = image_urls.map((img) => xss(img));
         const imageUrls = `{${sanitizedImages.join(",")}}`;
 
-        const featuresArray = features.split(",").map((f) => f.trim()).filter(Boolean); 
+        const featuresArray = features.split(",").map((f) => f.trim()).filter(Boolean);
 
         const featureArrayFormatted = `{${featuresArray.join(",")}}`;
 
         const results = await query(`
     INSERT INTO properties (
-        title, location, bedrooms, image_urls, bathrooms, garage, size, price, features, owner_id
+        title, location, bedrooms, image_urls, bathrooms, garage, size, price, features, owner_id, type, description
     ) VALUES ( 
-        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10
+        $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12
     ) RETURNING id
 `, [
             title,
             location,
             bedrooms,
-            imageUrls, 
+            imageUrls,
             bathrooms,
             garage,
             size,
             price,
-            featureArrayFormatted, 
-            owner_id
+            featureArrayFormatted,
+            owner_id,
+            type,
+            description
         ]);
 
 

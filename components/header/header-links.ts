@@ -7,58 +7,50 @@ export type HeaderLinkType = {
     }[];
 };
 
+
 export const headerLinks: HeaderLinkType[] = [
     {
         name: 'Home',
         list: [
             { text: 'Home', href: '/' },
-            { text: 'Why You Should Work With Us', href: '/#whyshouldworkwithus' },
-            { text: 'Homes for you', href: '/#homesforyou' },
-            { text: 'Cities', href: '/#cities' },
+            { text: 'Why Work With Us', href: '/#whyshouldworkwithus' },
+            { text: 'Featured Homes', href: '/#featured-homes' },
+            { text: 'Cities We Serve', href: '/#cities' },
         ]
     },
     {
         name: 'Listings',
         list: [
-            { text: 'Home', href: '/' },
-            { text: 'Why You Should Work With Us', href: '/#whyshouldworkwithus' },
-            { text: 'Homes for you', href: '/#homesforyou' },
-            { text: 'Cities', href: '/#cities' },
-            { text: 'Home', href: '/' },
-            { text: 'Home', href: '/' },
+            { text: 'All Properties', href: '/properties' },
+            { text: 'For Sale', href: '/properties?type=sale' },
+            { text: 'For Rent', href: '/properties?type=rent' },
+            { text: 'Luxury Homes', href: '/properties?category=luxury' },
+            { text: 'New Developments', href: '/properties?category=new' },
         ]
     },
     {
         name: 'Members',
         list: [
-            { text: 'Home', href: '/' },
-            { text: 'Why You Should Work With Us', href: '/#whyshouldworkwithus' },
-            { text: 'Homes for you', href: '/#homesforyou' },
-            { text: 'Cities', href: '/#cities' },
-            { text: 'Home', href: '/' },
-            { text: 'Home', href: '/' },
+            { text: 'Our Agents', href: '/agents' },
+            { text: 'Agent Profiles', href: '/agents/:id' },
+            { text: 'Join Our Team', href: '/join' },
         ]
     },
     {
         name: 'Blog',
         list: [
-            { text: 'Home', href: '/' },
-            { text: 'Why You Should Work With Us', href: '/#whyshouldworkwithus' },
-            { text: 'Homes for you', href: '/#homesforyou' },
-            { text: 'Cities', href: '/#cities' },
-            { text: 'Home', href: '/' },
-            { text: 'Home', href: '/' },
+            { text: 'Latest Articles', href: '/blog' },
+            { text: 'Buying Guide', href: '/blog/buying-guide' },
+            { text: 'Selling Guide', href: '/blog/selling-guide' },
+            { text: 'Investment Tips', href: '/blog/investment' },
         ]
     },
     {
         name: 'Pages',
         list: [
-            { text: 'Home', href: '/' },
-            { text: 'Why You Should Work With Us', href: '/#whyshouldworkwithus' },
-            { text: 'Homes for you', href: '/#homesforyou' },
-            { text: 'Cities', href: '/#cities' },
-            { text: 'Home', href: '/' },
-            { text: 'Home', href: '/' },
+            { text: 'About Us', href: '/about' },
+            { text: 'Testimonials', href: '/testimonials' },
+            { text: 'FAQs', href: '/faq' },
         ]
     },
     {

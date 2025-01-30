@@ -4,7 +4,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaBed } from "react-icons/fa";
 import { FaBath } from "react-icons/fa";
 import { PropertyTypes } from "./type";
-import { LuLandPlot } from "react-icons/lu";
+import { LuScale3D } from "react-icons/lu";
 import Link from "next/link";
 
 function Card({
@@ -19,9 +19,11 @@ function Card({
 }: PropertyTypes) {
   return (
     <Link
-      href={`/property/${id}`}
-      className="cursor-pointer rounded-lg bg-white aspect-[9/12] flex flex-col justify-between bg-cover bg-center p-1 sm:p-2  lg:p-4 w-full text-[12px]"
-      style={{ backgroundImage: `url(${image_urls[0]})` }}
+      href={`/properties/${id}`}
+      className="cursor-pointer shadow-md rounded-lg bg-white aspect-[9/12] flex flex-col justify-between bg-cover bg-center p-1 sm:p-2  lg:p-4 w-full text-[12px]"
+      style={{
+        backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${image_urls[0]})`,
+      }}
     >
       <button className="text-[10px] self-start px-2 flex items-center h-6 rounded-lg bg-green-700 text-white font-semibold">
         FOR SALE
@@ -33,8 +35,8 @@ function Card({
           {location}
         </p>
         <p className="text-[10px] opacity-70 flex items-center gap-1">
-          <LuLandPlot />
-          {size} sq.mtr
+          <LuScale3D size={12} />
+          {size} sq.ft
         </p>
         <div className="flex justify-between gap-4">
           <p className="text-orange-500 font-semibold">Rs.{price}</p>
