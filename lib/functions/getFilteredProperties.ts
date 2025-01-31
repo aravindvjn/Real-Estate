@@ -1,3 +1,4 @@
+'use server'
 import type { PropertyTypes } from "@/components/cards/type";
 import { query } from "../db";
 
@@ -6,28 +7,31 @@ type getFilteredPropertiesProps = {
     location?: string;
     search?: string;
     category?: "luxury" | "new";
-    bedroom: number;
-    bathroom: number;
-    garage: number;
-    minPrice: number;
-    maxPrice: number;
-    size: number;
+    bedroom?: number;
+    bathroom?: number;
+    garage?: number;
+    minPrice?: number;
+    maxPrice?: number;
+    size?: number;
 };
 
-export const getFilteredProperties = async ({
-    type,
-    location,
-    search,
-    category,
-    bedroom,
-    bathroom,
-    garage,
-    minPrice,
-    maxPrice,
-    size,
-}: getFilteredPropertiesProps): Promise<PropertyTypes[]> => {
+export const getFilteredProperties = async (
+    {
+        type,
+        location,
+        search,
+        category,
+        bedroom,
+        bathroom,
+        garage,
+        minPrice,
+        maxPrice,
+        size,
+    }: getFilteredPropertiesProps,
+    page: number = 0
+): Promise<PropertyTypes[]> => {
     let code = "SELECT * FROM properties";
-    let params: string[] = [];
+    let params: any[] = [];
     let conditions: string[] = [];
 
     if (type) {
@@ -54,39 +58,40 @@ export const getFilteredProperties = async ({
 
     if (minPrice) {
         conditions.push(`price >= $${params.length + 1}`);
-        params.push((minPrice * 100000).toString());
+        params.push(minPrice * 100000);
     }
 
     if (maxPrice) {
         conditions.push(`price <= $${params.length + 1}`);
-        params.push((maxPrice * 100000).toString());
+        params.push(maxPrice * 100000);
     }
 
     if (size) {
         conditions.push(`size >= $${params.length + 1}`);
-        params.push(size.toString());
+        params.push(size);
     }
 
     if (bedroom) {
         conditions.push(`bedrooms >= $${params.length + 1}`);
-        params.push(bedroom.toString());
+        params.push(bedroom);
     }
 
     if (bathroom) {
         conditions.push(`bathrooms >= $${params.length + 1}`);
-        params.push(bathroom.toString());
+        params.push(bathroom);
     }
 
     if (garage) {
         conditions.push(`garage >= $${params.length + 1}`);
-        params.push(garage.toString());
+        params.push(garage);
     }
 
     if (conditions.length > 0) {
         code += " WHERE " + conditions.join(" AND ");
     }
 
-    code += " ORDER BY created_at DESC LIMIT 10";
+    code += ` ORDER BY created_at DESC LIMIT 10 OFFSET $${params.length + 1}`;
+    params.push((page) * 10); 
 
     const results = await query(code, params);
     return results.rows || [];

@@ -6,6 +6,7 @@ import { FaBath } from "react-icons/fa";
 import { PropertyTypes } from "./type";
 import { LuScale3D } from "react-icons/lu";
 import Link from "next/link";
+import { formatINR } from "@/globals/helper/formateMoney";
 
 function Card({
   image_urls = [image.src],
@@ -21,7 +22,7 @@ function Card({
   return (
     <Link
       href={`/properties/${id}`}
-      className="cursor-pointer shadow-md rounded-lg bg-white aspect-[9/12] flex flex-col justify-between bg-cover bg-center p-1 sm:p-2  lg:p-4 w-full text-[12px]"
+      className="cursor-pointer shadow-md rounded-lg bg-white aspect-[9/12] flex flex-col justify-between bg-cover bg-center p-1 sm:p-2  lg:p-4 min-w-[200px] sm:min-w-[100px] w-full text-[12px]"
       style={{
         backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${image_urls[0]})`,
       }}
@@ -44,7 +45,9 @@ function Card({
           {size} sq.ft
         </p>
         <div className="flex justify-between gap-4">
-          <p className="text-orange-500 font-semibold">Rs.{price}</p>
+          <p className="text-orange-500 font-semibold">
+            Rs.{formatINR(Number(price))}
+          </p>
           <div className="flex items-center gap-3 opacity-80">
             <span className="flex items-center gap-0.5 lg:gap-1">
               <FaBed size={12} />

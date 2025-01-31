@@ -1,9 +1,9 @@
+"use server";
 import HeaderNav from "@/components/header/header-nav";
 import FilterProperties from "@/components/properties-page/filter-properties";
-import { getFilteredProperties } from "@/lib/functions/getFilteredProperties";
 import React from "react";
 
-type ParamsProps = {
+export type PropterySearchParamsProps = {
   searchParams: {
     type: "rent" | "sale";
     category: "luxury" | "new";
@@ -18,37 +18,12 @@ type ParamsProps = {
   };
 };
 
-const Page = async ({ searchParams }: ParamsProps) => {
-  const {
-    type,
-    location,
-    search,
-    category,
-    bedroom,
-    bathroom,
-    garage,
-    minPrice,
-    maxPrice,
-    size,
-  } = await searchParams;
-
-  const properties = await getFilteredProperties({
-    type,
-    location,
-    search,
-    category,
-    bedroom,
-    bathroom,
-    garage,
-    minPrice,
-    maxPrice,
-    size,
-  });
-
+const Page = async ({ searchParams }: PropterySearchParamsProps) => {
+  const data = await searchParams;
   return (
     <div>
       <HeaderNav />
-      <FilterProperties properties={properties} />
+      <FilterProperties searchParams={data} />
     </div>
   );
 };

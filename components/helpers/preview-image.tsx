@@ -25,8 +25,8 @@ const PreviewImage = ({
 
   const compressImage = async (file: File) => {
     const options = {
-      maxSizeMB: 0.5, 
-      maxWidthOrHeight: 1024, 
+      maxSizeMB: 0.5,
+      maxWidthOrHeight: 1024,
       useWebWorker: true,
     };
 
@@ -43,15 +43,18 @@ const PreviewImage = ({
     }
   };
 
-  const pickImageHandler = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const pickImageHandler = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const files = event.target.files;
     if (files && files.length > 0) {
       const compressedImages = await Promise.all(
         Array.from(files).map((file) => compressImage(file))
       );
 
-      // Filter out any failed compression results
-      const validImages = compressedImages.filter((img): img is string => img !== null);
+      const validImages = compressedImages.filter(
+        (img): img is string => img !== null
+      );
 
       setSelectedImage(validImages);
       setCurrentImageIndex(0);
@@ -91,14 +94,20 @@ const PreviewImage = ({
         {displayImage && (
           <div className="flex-col">
             {minimum && selectedImage.length < minimum && (
-              <p className="text-red-500">Minimum {minimum} images are required.</p>
+              <p className="text-red-500">
+                Minimum {minimum} images are required.
+              </p>
+            )}
+            {minimum && selectedImage.length > 10 && (
+              <p className="text-red-500">Maximum 10 images</p>
             )}
             <Image
               src={displayImage}
               className={
-                minimum && selectedImage.length >= minimum
-                  ? ""
-                  : "border-2 border-red-500"
+                minimum &&
+                (selectedImage.length < minimum || selectedImage.length > 10)
+                  ? "border-2 border-red-500"
+                  : ""
               }
               height={200}
               width={200}
@@ -109,13 +118,14 @@ const PreviewImage = ({
         )}
         <button
           type="button"
-          className="flex justify-center items-center sm:h-32 sm:w-32 border rounded bg-gray-200 font-semibold"
+          className="flex justify-center items-center h-32 w-32 border rounded bg-gray-200 font-semibold"
           onClick={triggerImageHandler}
         >
           {displayImage
             ? "Change Selection"
             : multiple
-            ? `Select Images (minimum ${minimum} images)`
+            ? `Select Images
+(${minimum}-10 images)`
             : "Select An Image"}
         </button>
       </div>

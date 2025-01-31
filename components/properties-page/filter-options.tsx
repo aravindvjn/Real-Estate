@@ -17,8 +17,9 @@ const FilterOptions = () => {
 export default FilterOptions;
 
 export const FilterOptionsComponent = () => {
-  const [priceRange, setPriceRange] = useState<[number, number]>([50, 500]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 500]);
   const router = useRouter()
+  
   const formAction = (formData: FormData) => {
     const type = formData.get("type");
     const bedroom = formData.get("bedroom");
@@ -28,7 +29,6 @@ export const FilterOptionsComponent = () => {
     const minPrice = priceRange[0];
     const maxPrice = priceRange[1];
     router.push(`/properties?type=${type}&bedroom=${bedroom}&bathroom=${bathroom}&garage=${garage}&size=${size}&minPrice=${minPrice}&maxPrice=${maxPrice}`)
-
   };
 
   return (

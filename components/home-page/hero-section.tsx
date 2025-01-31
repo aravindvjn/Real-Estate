@@ -5,7 +5,9 @@ import Header from "../header/header";
 function HeroSection() {
   return (
     <div
-      style={{ backgroundImage: "url('/hero-background.jpg')" }}
+    style={{
+      backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0)), url('background-1.jpg')`,
+    }}
       className="w-full aspect-[1.2] sm:aspect-[2.5] bg-cover  text-[10px] sm:text-[12px]  items-center bg-center p-4"
     >
       <Header />

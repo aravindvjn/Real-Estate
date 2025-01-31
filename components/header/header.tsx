@@ -7,6 +7,7 @@ import CheckingUser from "./checking-user";
 import { VscAccount } from "react-icons/vsc";
 import { app_name } from "@/globals/constants";
 import { TbBrandNextjs } from "react-icons/tb";
+import Drawer from "./drawer";
 const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
   return (
     <div
@@ -14,14 +15,10 @@ const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
         greenTheme ? "bg-green-1 text-white" : "bg-white "
       } bg-opacity-80 backdrop-blur-sm px-5 py-2`}
     >
-      <div className="flex items-center gap-2">
-        <IoMenu
-          className="sm:hidden text-white"
-          color={greenTheme ? "white" : "black"}
-          size={22}
-        />
+      <div className="flex items-center gap-1 md:gap-2 -translate-x-5 lg:translate-x-0">
+        <Drawer greenTheme={greenTheme || false} />
         <Link href={"/"} className="font-semibold flex gap-[2px] items-center">
-        <TbBrandNextjs size={18} />
+          <TbBrandNextjs size={18} />
           {app_name}
         </Link>
       </div>
@@ -32,7 +29,9 @@ const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
         </Suspense>
         <Link
           href={"/add-property"}
-          className={`px-2 border rounded-full hover:bg-black/10 ${greenTheme ? "" : 'border-gray-500'}`}
+          className={`px-2 border rounded-full hover:bg-black/10 ${
+            greenTheme ? "" : "border-gray-500"
+          }`}
         >
           Add Property
         </Link>
