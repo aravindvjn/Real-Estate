@@ -1,21 +1,24 @@
+"use server";
 import React from "react";
 import { FindPropertiesCellProps } from "./types";
-import { properties } from "./options";
 import image from "@/assets/images/image-6.jpg";
+import { CitiesProps, getCities } from "@/lib/functions/getCities";
+import Link from "next/link";
 
-function FindPropertiesByCities() {
+async function FindPropertiesByCities() {
+  const cities: CitiesProps[] = await getCities();
   return (
     <div
       id="cities"
       className="grid grid-cols-3 gap-2 lg:grid-cols-4 sm:gap-3 md:gap-4 px-[10px] sm:px-[50px] md:px-[100px] lg:px-[200px] mb-[100px]"
     >
-      {properties.map((property, index) => {
+      {cities.map((city, index) => {
         return (
           <SingleCell
             key={index}
-            city={property.city}
-            image_url={property.image_url}
-            no_properties={property.no_properties}
+            city={city.city}
+            image_url={city.image_url}
+            no_properties={city.no_properties}
           />
         );
       })}
@@ -29,7 +32,8 @@ const SingleCell = ({
   no_properties,
 }: FindPropertiesCellProps) => {
   return (
-    <div
+    <Link
+      href={`/properties?location=${city}`}
       style={{
         backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${
           image_url || image.src
@@ -39,7 +43,7 @@ const SingleCell = ({
     >
       <p className="text-[10px] py-1">{no_properties} Properties</p>
       <p className="font-semibold">{city}</p>
-    </div>
+    </Link>
   );
 };
 export default FindPropertiesByCities;

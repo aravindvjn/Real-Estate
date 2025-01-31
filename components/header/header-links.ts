@@ -31,8 +31,8 @@ export const headerLinks: HeaderLinkType[] = [
     {
         name: 'Members',
         list: [
+            { text: 'Public Agents', href: '/agents?type=public' },
             { text: 'Our Agents', href: '/agents' },
-            { text: 'Agent Profiles', href: '/agents/:id' },
             { text: 'Join Our Team', href: '/join' },
         ]
     },

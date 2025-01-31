@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import { IoMenu } from "react-icons/io5";
 import HeaderDropDown from "../home-page/header-dropdown";
 import Link from "next/link";
 import { headerLinks } from "./header-links";

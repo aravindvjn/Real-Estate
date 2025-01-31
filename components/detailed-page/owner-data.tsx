@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { MdEmail, MdPhone } from "react-icons/md";
+import ContactAgent from "./contact-agent";
 
 const OwnerDetails = async ({ owner_id }: { owner_id: string }) => {
   const user = await getUser(owner_id);
@@ -13,7 +14,7 @@ const OwnerDetails = async ({ owner_id }: { owner_id: string }) => {
     <div className="py-5">
       <p className="text-lg md:text-xl font-bold">Publised By</p>
       <Link
-        href={`/user/${user?.user_id}`}
+        href={`/users/${user?.user_id}`}
         className="flex gap-3 sm:gap-5 pt-3 w-fit"
       >
         <div>
@@ -40,6 +41,7 @@ const OwnerDetails = async ({ owner_id }: { owner_id: string }) => {
           </p>
         </div>
       </Link>
+      <ContactAgent email={user.email} />
     </div>
   );
 };

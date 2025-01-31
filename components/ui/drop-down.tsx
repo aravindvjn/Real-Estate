@@ -61,9 +61,8 @@ const DropDown = ({
             }}
           >
             {option?.list?.map((opt, index) => (
-              <Link href={opt.href}>
+              <Link href={opt.href} key={index}>
                 <li
-                  key={index}
                   className={`px-5 py-2 border-t-[1px] border-opacity-10  cursor-pointer overflow-hidden ${
                     greenTheme ? "hover:bg-green-800" : "hover:bg-white"
                   }`}

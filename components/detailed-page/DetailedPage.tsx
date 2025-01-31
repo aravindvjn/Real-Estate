@@ -38,12 +38,11 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
           <FeatureSection
             features={[...additionalFeatures, ...property.features]}
           />
+          <p className="text-lg md:text-xl font-bold py-2">Gallery</p>
+          <ImageSlideShow image_urls={property.image_urls} />
           <Suspense fallback={<p>Loading...</p>}>
             <OwnerDetails owner_id={property.owner_id!} />
           </Suspense>
-          <p className="text-lg md:text-xl font-bold py-2">Gallery</p>
-          <ImageSlideShow image_urls={property.image_urls} />
-          <ContactAgent />
         </div>
       </div>
     </div>

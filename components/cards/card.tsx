@@ -22,7 +22,7 @@ function Card({
   return (
     <Link
       href={`/properties/${id}`}
-      className="cursor-pointer shadow-md rounded-lg bg-white aspect-[9/12] flex flex-col justify-between bg-cover bg-center p-1 sm:p-2  lg:p-4 min-w-[200px] sm:min-w-[100px] w-full text-[12px]"
+      className="cursor-pointer shadow-md rounded-lg bg-white aspect-[9/12] flex flex-col justify-between bg-cover bg-center p-1 sm:p-2  lg:p-4  sm:min-w-[100px] w-full text-[10px] sm:text-[12px] "
       style={{
         backgroundImage: `linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(${image_urls[0]})`,
       }}
@@ -44,7 +44,7 @@ function Card({
           <LuScale3D size={12} />
           {size} sq.ft
         </p>
-        <div className="flex justify-between gap-4">
+        <div className="flex justify-between gap-4 text-[10px]">
           <p className="text-orange-500 font-semibold">
             Rs.{formatINR(Number(price))}
           </p>

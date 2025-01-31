@@ -13,6 +13,7 @@ type getFilteredPropertiesProps = {
     minPrice?: number;
     maxPrice?: number;
     size?: number;
+    owner_id?: string;
 };
 
 export const getFilteredProperties = async (
@@ -27,22 +28,23 @@ export const getFilteredProperties = async (
         minPrice,
         maxPrice,
         size,
+        owner_id
     }: getFilteredPropertiesProps,
     page: number = 0
 ): Promise<PropertyTypes[]> => {
     let code = "SELECT * FROM properties";
     let params: any[] = [];
     let conditions: string[] = [];
-
     if (type) {
         conditions.push(`type = $${params.length + 1}`);
         params.push(type);
     }
 
     if (location) {
-        conditions.push(`location = $${params.length + 1}`);
-        params.push(location);
+        conditions.push(`(location ILIKE $${params.length + 1} OR title ILIKE $${params.length + 1} OR description ILIKE $${params.length + 1})`);
+        params.push(`%${location}%`);
     }
+
 
     if (search) {
         conditions.push(`(title ILIKE $${params.length + 1} OR description ILIKE $${params.length + 1})`);
@@ -86,13 +88,19 @@ export const getFilteredProperties = async (
         params.push(garage);
     }
 
+    if (owner_id) {
+        conditions.push(`owner_id = $${params.length + 1}`);
+        params.push(owner_id);
+    }
+
     if (conditions.length > 0) {
         code += " WHERE " + conditions.join(" AND ");
     }
 
-    code += ` ORDER BY created_at DESC LIMIT 10 OFFSET $${params.length + 1}`;
-    params.push((page) * 10); 
-
+    code += ` ORDER BY created_at DESC LIMIT 24 OFFSET $${params.length + 1}`;
+    params.push((page) * 10);
+    console.log(code, params)
     const results = await query(code, params);
+    console.log(results.rows)
     return results.rows || [];
 };

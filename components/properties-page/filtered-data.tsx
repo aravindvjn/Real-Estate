@@ -5,14 +5,17 @@ import FilterMenu from "./filter-menu";
 import Card from "../cards/card";
 import Container from "../ui/container";
 import { BsFillHouseExclamationFill } from "react-icons/bs";
-import { PropterySearchParamsProps } from "@/app/properties/page";
+import type { PropertySearchParams } from "@/app/properties/page";
 import { getFilteredProperties } from "@/lib/functions/getFilteredProperties";
 import { PropertyTypes } from "../cards/type";
 import CardSkeleton from "../cards/skeleton";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 
-const FilteredData = ({ searchParams }: PropterySearchParamsProps) => {
+const FilteredData = ({
+  searchParams,
+  noOptions,
+}: PropertySearchParams & { noOptions?: boolean }) => {
   const [properties, setProperties] = useState<PropertyTypes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(true);
@@ -20,7 +23,6 @@ const FilteredData = ({ searchParams }: PropterySearchParamsProps) => {
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const ref = useRef(null);
   const isVisible = useInView(ref);
-
   const fetchData = async (refetch?: boolean) => {
     if (refetch) {
       setIsRefetching(true);
@@ -30,9 +32,8 @@ const FilteredData = ({ searchParams }: PropterySearchParamsProps) => {
     }
 
     const data =
-      (await getFilteredProperties(searchParams, refetch ? 0 : loadedPage)) ??
+      (await getFilteredProperties(searchParams!, refetch ? 0 : loadedPage)) ??
       [];
-
     if (data.length > 0) {
       setProperties((prev) => {
         if (refetch) {
@@ -56,7 +57,6 @@ const FilteredData = ({ searchParams }: PropterySearchParamsProps) => {
 
   useEffect(() => {
     if (isVisible && !isLoading && !isRefetching && !isFinished) {
-      console.log("fetching...");
       fetchData();
     }
   }, [isVisible]);
@@ -64,8 +64,8 @@ const FilteredData = ({ searchParams }: PropterySearchParamsProps) => {
   return (
     <div className="flex-grow">
       <div className="flex pb-4 flex-col">
-        <SearchInput full />
-        <FilterMenu />
+        {!noOptions && <SearchInput full />}
+        {!noOptions && <FilterMenu />}
       </div>
       <div className="grid w-full grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
         {properties?.length > 0 &&
