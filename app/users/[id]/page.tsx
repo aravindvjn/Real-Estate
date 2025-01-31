@@ -1,5 +1,4 @@
-import { PropertySearchParams } from "@/app/properties/page";
-import HeaderNav from "@/components/header/header-nav";
+
 import PublishedProperties from "@/components/user-page/published-properties";
 import UserProfiles from "@/components/user-page/user-profile";
 import { getUser } from "@/lib/functions/getUser";
@@ -21,7 +20,6 @@ const page = async ({ params }: ParamsProps) => {
 
   return (
     <div>
-      <HeaderNav />
       <UserProfiles {...user} />
       <PublishedProperties searchParams={{ owner_id: user?.user_id || "" }} />
     </div>

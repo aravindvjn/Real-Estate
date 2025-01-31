@@ -33,7 +33,7 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
           title={property.title}
           type={property.type}
         />
-        <div className="px-5 md:px-10 pb-5 text-sm md:text-lg">
+        <div className="px-5 md:px-10 pb-5 text-sm md:text-[16px]">
           <PropertyDetails {...property} />
           <FeatureSection
             features={[...additionalFeatures, ...property.features]}

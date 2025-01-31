@@ -6,7 +6,7 @@ export async function sendMail(prev: string, formData: FormData) {
     const name = formData.get('name') as string
     const email = formData.get('email') as string
     const message = formData.get('message') as string
-
+    console.log(sender_email)
     if (!sender_email || !name || !message) {
         return "Fill All Fields."
     }

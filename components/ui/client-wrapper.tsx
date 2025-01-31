@@ -1,8 +1,16 @@
-'use client'
+"use client";
 import { SessionProvider } from "next-auth/react";
 import { ReactNode } from "react";
+import HeaderNav from "../header/header-nav";
+import { usePathname } from "next/navigation";
 
 export const ClientWrapper = ({ children }: { children: ReactNode }) => {
-    "use client";
-    return <SessionProvider>{children}</SessionProvider>;
-  };
+  const pathName = usePathname();
+  const isHeader = ["/","/auth"].includes(pathName);
+  return (
+    <SessionProvider>
+      {!isHeader && <HeaderNav />}
+      {children}
+    </SessionProvider>
+  );
+};

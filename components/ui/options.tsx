@@ -6,11 +6,9 @@ import Select from "react-select";
 const Options = ({
   name,
   options,
-  defaultValue,
 }: {
   name: string;
   options: { label: string; value: string }[];
-  defaultValue: string;
 }) => {
   const searchParams = useSearchParams();
   const searchParam = searchParams.get(name);
@@ -18,19 +16,19 @@ const Options = ({
   const selectedOption = options.find((option) => option.value === searchParam);
 
   const [value, setValue] = useState<{ label: string; value: string } | undefined>(
-    selectedOption || { label: defaultValue, value: "" }
+    selectedOption || options[0]
   );
 
   useEffect(() => {
     if (searchParam && selectedOption) {
       setValue(selectedOption);
     } else {
-      setValue({ label: defaultValue, value: "" });
+      setValue(options[0]);
     }
-  }, [searchParam, selectedOption, defaultValue]);
+  }, [searchParam, selectedOption]);
 
   const handleChange = (selected: { label: string; value: string } | null) => {
-    setValue(selected || { label: defaultValue, value: "" });
+    setValue(selected || options[0]);
 
   };
 

@@ -37,9 +37,9 @@ export const FilterOptionsComponent = () => {
       <SelectRange priceRange={priceRange} setPriceRange={setPriceRange} />
       <div className="pb-3">
         <Options
-          defaultValue={"Select type"}
           name={"type"}
           options={[
+            {value:"",label:"Select a type"},
             { value: "sale", label: "Sale" },
             { value: "rent", label: "Rent" },
           ]}

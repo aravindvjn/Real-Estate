@@ -12,9 +12,9 @@ const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
     <div
       className={`p-4 flex justify-between rounded-full ${
         greenTheme ? "bg-green-1 text-white" : "bg-white "
-      } bg-opacity-80 backdrop-blur-sm px-5 py-2`}
+      } bg-opacity-80 backdrop-blur-sm px-5 py-2 h-10 items-center`}
     >
-      <div className="flex items-center gap-1 md:gap-2 -translate-x-5 lg:translate-x-0">
+      <div className="flex items-center gap-1 md:gap-2 -translate-x-3 sm:translate-x-0">
         <Drawer greenTheme={greenTheme || false} />
         <Link href={"/"} className="font-semibold flex gap-[2px] items-center">
           <TbBrandNextjs size={18} />

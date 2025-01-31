@@ -63,7 +63,7 @@ export const getFilteredProperties = async (
         params.push(minPrice * 100000);
     }
 
-    if (maxPrice) {
+    if (maxPrice && maxPrice !== 500) {
         conditions.push(`price <= $${params.length + 1}`);
         params.push(maxPrice * 100000);
     }
@@ -99,8 +99,6 @@ export const getFilteredProperties = async (
 
     code += ` ORDER BY created_at DESC LIMIT 24 OFFSET $${params.length + 1}`;
     params.push((page) * 10);
-    console.log(code, params)
     const results = await query(code, params);
-    console.log(results.rows)
     return results.rows || [];
 };

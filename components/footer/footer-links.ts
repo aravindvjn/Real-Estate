@@ -5,24 +5,23 @@ export const footerContent: {
         {
             heading: 'Discover',
             links: [
-                { label: 'Miami', href: '/' },
-                { label: 'New York', href: '/' },
-                { label: 'Chicago', href: '/' },
-                { label: 'Florida', href: '/' },
-                { label: 'Los Angeles', href: '/' },
-                { label: 'San Diego', href: '/' },
+                { label: 'Kollam', href: '/properties?location=kollam' },
+                { label: 'Ernakulam', href: '/properties?location=ernakulam' },
+                { label: 'Thrissur', href: '/properties?location=thrissur' },
+                { label: 'Palakkad', href: '/properties?location=palakkad' },
+                { label: 'Kottayam', href: '/properties?location=kottayam' },
             ]
         },
         {
             heading: 'Quick Links',
             links: [
-                { label: 'About', href: '/' },
-                { label: 'Contact', href: '/' },
-                { label: "FAQ's", href: '/' },
-                { label: 'Blog', href: '/' },
-                { label: 'Pricing Plans', href: '/' },
-                { label: 'Privacy Policy', href: '/' },
-                { label: 'Terms & Conditions', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Contact', href: '/contact' },
+                { label: "FAQ's", href: '/faq' },
+                { label: 'Blog', href: '/blog' },
+                { label: 'Pricing Plans', href: '/pricing-plans' },
+                { label: 'Privacy Policy', href: '/privacy-policy' },
+                { label: 'Terms & Conditions', href: '/terms-and-conditions' },
             ]
         },
         {

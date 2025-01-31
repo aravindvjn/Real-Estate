@@ -1,6 +1,5 @@
 import DetailedPage from "@/components/detailed-page/DetailedPage";
 import Footer from "@/components/footer/footer";
-import HeaderNav from "@/components/header/header-nav";
 import { getPropertyById } from "@/lib/functions/getPropertyById";
 import { notFound } from "next/navigation";
 import React from "react";
@@ -20,7 +19,6 @@ async function Page({ params }: ParamsType) {
 
   return (
     <div className="overflow-x-hidden">
-      <HeaderNav />
       <DetailedPage property={property} />
       <Footer />
     </div>

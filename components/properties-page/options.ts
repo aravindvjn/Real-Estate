@@ -3,8 +3,12 @@ import { OptionsProps } from "./select-options";
 export const select_options: OptionsProps[] = [{
     name: 'bedroom',
     label: 'Bedrooms',
-    defaultValue: 'Minimum Bedrooms',
+
     options: [
+        {
+            value: '0',
+            label: 'Any',
+        },
         {
             value: '1',
             label: '1 Bedroom'
@@ -35,8 +39,11 @@ export const select_options: OptionsProps[] = [{
 {
     name: 'bathroom',
     label: 'Bathrooms',
-    defaultValue: 'Minimum Bathrooms',
     options: [
+        {
+            value: '0',
+            label: 'Any',
+        },
         {
             value: '1',
             label: '1 Bathrooms'
@@ -67,8 +74,11 @@ export const select_options: OptionsProps[] = [{
 {
     name: 'garage',
     label: 'Garage',
-    defaultValue: 'Minimum Garage',
     options: [
+        {
+            value: '0',
+            label: 'Any',
+        },
         {
             value: '1',
             label: '1 Garage'

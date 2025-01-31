@@ -30,7 +30,7 @@ const OwnerDetails = async ({ owner_id }: { owner_id: string }) => {
           <p className="font-bold">
             {user.first_name} {user.last_name}
           </p>
-          <p className="capitalize">{user?.role}</p>
+          <p className="capitalize italic">{user?.role}</p>
           <p className="flex gap-1 items-center">
             <MdPhone />
             {user.phone_number}

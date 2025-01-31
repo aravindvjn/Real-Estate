@@ -5,7 +5,6 @@ import Options from "../ui/options";
 
 export type OptionsProps = {
   name: string;
-  defaultValue: string;
   options: {
     label: string;
     value: string;
@@ -33,7 +32,6 @@ const SelectOptions = ({ group }: SelectOptionsProps) => {
             {select.label}
           </label>
           <Options
-            defaultValue={select.defaultValue}
             name={select.name}
             options={select.options}
           />

@@ -1,5 +1,4 @@
 "use server";
-import HeaderNav from "@/components/header/header-nav";
 import FilterProperties from "@/components/properties-page/filter-properties";
 import React from "react";
 
@@ -23,7 +22,6 @@ const Page = async ({ searchParams }: PropertySearchParams) => {
   const data = await searchParams;
   return (
     <div>
-      <HeaderNav />
       <FilterProperties searchParams={data} />
     </div>
   );
