@@ -3,7 +3,7 @@ import { getPropertyById } from "@/lib/functions/getPropertyById";
 import { notFound } from "next/navigation";
 import React from "react";
 type ParamsType = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 async function Page({ params }: ParamsType) {
   const { id } = await params;

@@ -2,7 +2,7 @@
 import type { PropertyTypes } from "@/components/cards/type";
 import { query } from "../db";
 
-type getFilteredPropertiesProps = {
+export type getFilteredPropertiesProps = {
     type?: string;
     location?: string;
     search?: string;

@@ -2,23 +2,28 @@ import DetailedGuide from "@/components/blog-page/guide-page/detailed-guide/deta
 import { realEstateGuides } from "@/components/blog-page/guide-page/guides";
 import { notFound } from "next/navigation";
 import React from "react";
+import { PageProps } from "next"; 
 
-const page = ({ params }: { params: { id: string } }) => {
-  const { id } = params;
+const Page = async ({ params }: PageProps<{ id: string }>) => {
+  const id = parseInt(params.id, 10);
 
-  const results = realEstateGuides
+  if (isNaN(id)) {
+    notFound();
+  }
+
+  const result = realEstateGuides
     .flatMap((guide) => guide.guides)
-    .find((item) => item.id === Number(id));
+    .find((item) => item.id === id);
 
-  if (!results) {
+  if (!result) {
     notFound();
   }
 
   return (
     <div>
-      <DetailedGuide {...results} />
+      <DetailedGuide {...result} />
     </div>
   );
 };
 
-export default page;
+export default Page;

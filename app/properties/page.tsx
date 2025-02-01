@@ -1,21 +1,10 @@
 "use server";
 import FilterProperties from "@/components/properties-page/filter-properties";
+import { getFilteredPropertiesProps } from "@/lib/functions/getFilteredProperties";
 import React from "react";
 
 export type PropertySearchParams = {
-  searchParams?: {
-    type?: "rent" | "sale";
-    category?: "luxury" | "new";
-    location?: string;
-    search?: string;
-    bedroom?: number;
-    bathroom?: number;
-    garage?: number;
-    minPrice?: number;
-    maxPrice?: number;
-    size?: number;
-    owner_id?: string;
-  };
+  searchParams?: getFilteredPropertiesProps;
 };
 
 const Page = async ({ searchParams }: PropertySearchParams) => {

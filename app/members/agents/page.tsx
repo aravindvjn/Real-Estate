@@ -1,16 +1,14 @@
 import AgentLists from "@/components/member-page/agents-page/agent-lists";
 import { UserType } from "@/components/header/type";
 import { getAgents } from "@/lib/functions/getAgents";
-import React from "react";
 
-const page = async ({
-  searchParams,
-}: {
-  searchParams: {
-    type: "public" | "";
-  };
-}) => {
+interface PageProps {
+  searchParams: Promise<{ type: "" | "public" }>;
+}
+
+const Page = async ({ searchParams }: PageProps) => {
   const { type } = await searchParams;
+
   let agents: UserType[] = [];
 
   if (type === "public") {
@@ -26,4 +24,4 @@ const page = async ({
   );
 };
 
-export default page;
+export default Page;

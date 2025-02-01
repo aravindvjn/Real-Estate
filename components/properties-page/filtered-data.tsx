@@ -23,6 +23,7 @@ const FilteredData = ({
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const ref = useRef(null);
   const isVisible = useInView(ref);
+  
   const fetchData = async (refetch?: boolean) => {
     if (refetch) {
       setIsRefetching(true);
