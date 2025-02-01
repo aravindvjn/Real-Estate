@@ -13,18 +13,18 @@ function Footer() {
         <p>JustHome</p>
         <div className="flex gap-2 md:gap-4 items-center">
           <p>Follow Us</p>
-          <button>
+          <Link href={'#'}>
             <FaFacebook />
-          </button>
-          <button>
+          </Link>
+          <Link href={'#'}>
             <FaTwitter />
-          </button>
-          <button>
+          </Link>
+          <Link href={'https://instagram.com/6windh'}>
             <FaInstagram />
-          </button>
-          <button>
+          </Link>
+          <Link href={'#'}>
             <FaLinkedin />
-          </button>
+          </Link>
         </div>
       </div>
       <div className="w-full">

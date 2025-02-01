@@ -5,14 +5,13 @@ import OwnerDetails from "./owner-data";
 import BannerImage from "./banner-image";
 import PropertyDetails from "./property-details";
 import FeatureSection from "./feature-section";
-import ContactAgent from "./contact-agent";
 
 type DetailedPageProps = {
   property: PropertyTypes;
 };
 
 const DetailedPage = ({ property }: DetailedPageProps) => {
-  let additionalFeatures = [];
+  const additionalFeatures = [];
 
   if (property.bathrooms > 0) {
     additionalFeatures.push(property.bathrooms + " Bathrooms");
@@ -34,6 +33,7 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
           type={property.type}
         />
         <div className="px-5 md:px-10 pb-5 text-sm md:text-[16px]">
+        <p className="sm:text-right translate-y-3 text-[12px] italic sm:text-[14px]">Published on {new Date(property.created_at).toDateString()}</p>
           <PropertyDetails {...property} />
           <FeatureSection
             features={[...additionalFeatures, ...property.features]}

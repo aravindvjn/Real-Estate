@@ -6,12 +6,15 @@ import { VscAccount } from "react-icons/vsc";
 import { BasicUserDataType } from "./type";
 import UserPopDetails from "./user-pop-detail";
 import SignButtons from "./sign-buttons";
+import { useRouter } from "next/navigation";
+import Container from "../ui/container";
+import { FaCrown } from "react-icons/fa";
 
 function AccountCircle({ user }: { user: BasicUserDataType }) {
   const [showMenu, setShowMenu] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-
+  const router = useRouter();
   const toggleMenu = () => setShowMenu((prev) => !prev);
 
   const getButtonPosition = () => {
@@ -49,13 +52,23 @@ function AccountCircle({ user }: { user: BasicUserDataType }) {
   }, [showMenu]);
 
   const profile = user?.profile_picture_url ? (
-    <Image
-      className="h-[20px] w-[20px] rounded-full"
-      src={user?.profile_picture_url}
-      width={30}
-      height={30}
-      alt="profile-pic"
-    />
+    user?.isAdmin ? (
+      <Container
+        center
+        className="rounded-full h-[23px] w-[23px] bg-yellow-500"
+      >
+        <FaCrown size={15} />
+      </Container>
+    ) : (
+      <Image
+        onDoubleClick={() => router.push("/account")}
+        className="h-[23px] w-[23px] rounded-full"
+        src={user?.profile_picture_url}
+        width={30}
+        height={30}
+        alt="profile-pic"
+      />
+    )
   ) : (
     <VscAccount size={20} />
   );

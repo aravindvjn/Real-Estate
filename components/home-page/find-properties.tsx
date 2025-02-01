@@ -39,7 +39,7 @@ const SingleCell = ({
           image_url || image.src
         })`,
       }}
-      className={`rounded-lg cursor-pointer bg-center bg-cover p-3 md:p-5 text-[12px]  h-[200px] sm:h-[250px] md:h-[300px] lg:h-[400px] text-white`}
+      className={`rounded-lg cursor-pointer bg-center bg-cover p-3 md:p-5 text-[12px]  h-[180px] sm:h-[250px] md:h-[300px] lg:h-[400px] text-white`}
     >
       <p className="text-[10px] py-1">{no_properties} Properties</p>
       <p className="font-semibold">{city}</p>

@@ -12,7 +12,7 @@ const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
     <div
       className={`p-4 flex justify-between rounded-full ${
         greenTheme ? "bg-green-1 text-white" : "bg-white "
-      } bg-opacity-80 backdrop-blur-sm px-5 py-2 h-10 items-center`}
+      } bg-opacity-80 backdrop-blur-sm px-3 py-2 h-10 items-center`}
     >
       <div className="flex items-center gap-1 md:gap-2 -translate-x-3 sm:translate-x-0">
         <Drawer greenTheme={greenTheme || false} />
@@ -28,8 +28,8 @@ const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
         </Suspense>
         <Link
           href={"/add-property"}
-          className={`px-2 border rounded-full hover:bg-black/10 ${
-            greenTheme ? "" : "border-gray-500"
+          className={`px-2 border py-[1px] rounded-full ${
+            greenTheme ? " hover:bg-black/20 " : "hover:bg-white border-gray-500"
           }`}
         >
           Add Property

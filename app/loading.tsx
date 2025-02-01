@@ -1,7 +1,7 @@
 import React from "react";
 
 const loading = () => {
-  return <div></div>;
+  return <div className="min-h-dvh"></div>;
 };
 
 export default loading;

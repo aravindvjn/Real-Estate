@@ -13,16 +13,17 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen flex-col text-white">
-      <Container center className="flex-col pb-5 gap-2">
+    <div className="flex items-center bg-white  justify-center p-5 flex-col rounded-md m-5 shadow-md  text-black">
+      <Container center className="flex-col gap-2">
         <SiNextdotjs size={50} />
-        <p className="font-light text-3xl">{app_name}</p>
+        <p className="font-light text-3xl">Welcome to {app_name}</p>
       </Container>
+      <p className="pb-4">Sign in to continue</p>
       <button
         onClick={signWithGoogle}
-        className="rounded bg-blue-600 px-4 py-2 text-white"
+        className="rounded border border-black hover:bg-gray-200 px-4 py-2"
       >
-        {isLoading ? "Signing In with Google..." : "Sign In with Google"}
+        {isLoading ? "Continuing with Google..." : "Continue with Google"}
       </button>
     </div>
   );

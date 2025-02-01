@@ -5,9 +5,7 @@ import Image from "next/image";
 const DetailedGuide = ({
   description,
   details,
-  id,
   image,
-  link,
   title,
 }: DetailedGuidesType) => {
   return (

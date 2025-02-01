@@ -7,5 +7,6 @@ export type UserData = {
     profile_picture_url?: string;
     role: 'buyer' | 'seller' | 'agent';
     location?: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     preferences?: Record<string, any>;
 }

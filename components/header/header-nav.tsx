@@ -3,7 +3,7 @@ import Header from "./header";
 
 function HeaderNav() {
   return (
-    <div className="px-3 text-[12px] bg-green-1 z-50">
+    <div className="sm:px-3 text-[12px] bg-green-1 z-50">
       <Header greenTheme />
     </div>
   );

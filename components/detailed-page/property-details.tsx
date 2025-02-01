@@ -19,7 +19,6 @@ const PropertyDetails = ({
   bedrooms,
   garage,
   location,
-  price,
   size,
   description,
 }: PropertyDetailsProps) => {

@@ -30,6 +30,7 @@ const BannerImage = ({
         <p className="text-xl md:text-3xl font-bold capitalize">{title}</p>
         <p className="text-lg md:text-2xl">Rs.{formatINR(Number(price))}</p>
         <p className="text-[12px]">{numberToWords(Number(price))}</p>
+
       </div>
     </div>
   );

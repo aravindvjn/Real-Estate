@@ -49,13 +49,25 @@ const ContactAgent = ({ email }: { email: string }) => {
         action={formAction}
         className="flex flex-col gap-2 text-sm sm:gap-4 max-w-[500px]"
       >
-        <Input name="name" onlyPlaceholder="Your Name" />
+        <Input name="name" onlyPlaceholder="Your Name" required/>
+        <Input
+          name="phone_number"
+          type="tel"
+          placeholder="Enter your phone number"
+          pattern="^[6-9]\d{9}$"
+          maxLength={10}
+          title="Enter a valid 10-digit Indian phone number starting with 6-9"
+          onlyPlaceholder="Your Phone Number"
+          required
+        />
         <Input
           value={session?.user?.email}
           disabled
+          readOnly
           name="dummy"
-          placeholder="email"
+          placeholder="your email"
           onlyPlaceholder="Your Email"
+          required
         />
         <input name="sender_email" type="hidden" value={session?.user?.email} />
         <div className="flex flex-col gap-1">
@@ -63,11 +75,22 @@ const ContactAgent = ({ email }: { email: string }) => {
           <textarea
             name="message"
             id="message"
-            className="border px-3 py-2 rounded-lg "
+            className="border px-3 py-2 min-h-[100px] rounded-lg "
+            required
           ></textarea>
         </div>
         <input name="email" type="hidden" defaultValue={email} />
-        {state && <p className="text-red-600">{state}</p>}
+        {state && (
+          <p
+            className={`${
+              state === "Email sent successfully!"
+                ? "text-green-600"
+                : "text-red-600"
+            }`}
+          >
+            {state}
+          </p>
+        )}
         <button
           type="submit"
           className="px-6 py-3 w-fit rounded-md bg-blue-600 text-white"

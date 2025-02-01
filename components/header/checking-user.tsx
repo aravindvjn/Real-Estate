@@ -12,6 +12,7 @@ const CheckingUser = () => {
       try {
         const userData = (await getCurrentUser(true)) || {};
         setUser(userData);
+        console.log("User fetched successfully:", userData);
       } catch (error) {
         console.error("Failed to fetch user:", error);
       }

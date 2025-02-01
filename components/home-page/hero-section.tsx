@@ -1,6 +1,7 @@
 import React from "react";
 import SearchInput from "./search-input";
 import Header from "../header/header";
+import Link from "next/link";
 
 function HeroSection() {
   return (
@@ -12,11 +13,11 @@ function HeroSection() {
     >
       <Header />
       <div className="flex flex-col gap-2 sm:gap-4 justify-center items-center h-full text-white">
-        <button className="border rounded-full px-4 py-1 hover:bg-black hover:bg-opacity-45">
+        <Link href={'/blog/guide'} className="border rounded-full px-4 py-1 bg-white/20 backdrop-blur-sm hover:bg-black hover:bg-opacity-45">
           LET US GUIDE YOUR HOME
-        </button>
+        </Link>
         <p className="text-[20px] md:text[35px] lg:text-[50px] font-bold">
-          Discover a place you'll love to live
+          Discover a place you{`'`}ll love to live
         </p>
         <div className="flex gap-3 text-[10px] pt-3">
           <p>Sale</p>

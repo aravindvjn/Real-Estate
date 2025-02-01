@@ -7,7 +7,7 @@ import Footer from "../footer/footer";
 
 export const ClientWrapper = ({ children }: { children: ReactNode }) => {
   const pathName = usePathname();
-  const isHeader = ["/", "/auth"].includes(pathName);
+  const isHeader = ["/", "/auth","/auth/create-user"].includes(pathName);
   const isFooter = ["/auth","/auth/create-user"].includes(pathName);
   return (
     <SessionProvider>

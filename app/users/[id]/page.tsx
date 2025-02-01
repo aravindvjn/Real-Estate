@@ -3,7 +3,7 @@ import PublishedProperties from "@/components/user-page/published-properties";
 import UserProfiles from "@/components/user-page/user-profile";
 import { getUser } from "@/lib/functions/getUser";
 import { notFound } from "next/navigation";
-import React, { Suspense } from "react";
+import React from "react";
 
 type ParamsProps = {
   params: { id: string };

@@ -33,8 +33,9 @@ export const getFilteredProperties = async (
     page: number = 0
 ): Promise<PropertyTypes[]> => {
     let code = "SELECT * FROM properties";
-    let params: any[] = [];
-    let conditions: string[] = [];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const params: any[] = [];
+    const conditions: string[] = [];
     if (type) {
         conditions.push(`type = $${params.length + 1}`);
         params.push(type);

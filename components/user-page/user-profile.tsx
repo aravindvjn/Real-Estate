@@ -12,7 +12,6 @@ const UserProfiles = ({
   role,
   location,
   profile_picture_url,
-  created_at
 }: UserType) => {
   return (
     <div className="flex flex-col justify-center items-center sm:flex-row gap-3 sm:gap-5 sm:justify-start p-5 md:p-10 md:text-sm">

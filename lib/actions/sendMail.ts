@@ -6,8 +6,8 @@ export async function sendMail(prev: string, formData: FormData) {
     const name = formData.get('name') as string
     const email = formData.get('email') as string
     const message = formData.get('message') as string
-    console.log(sender_email)
-    if (!sender_email || !name || !message) {
+    const phone_number = formData.get('phone_number') as string
+    if (!sender_email || !name || !message || !phone_number) {
         return "Fill All Fields."
     }
     if (!email) {
@@ -28,12 +28,12 @@ export async function sendMail(prev: string, formData: FormData) {
         from: sender_email,
         to: email,
         subject: `New Message from ${name}`,
-        text: `Message: ${message}\n\nContact Info: ${sender_email}`,
+        text: `Message: ${message}\n\nContact Info:\nName: ${name}\nEmail: ${sender_email}\nPhone: ${phone_number}`,
     }
 
     try {
         await transporter.sendMail(mailOptions)
-        return ""
+        return "Email sent successfully!"
     } catch (error) {
         console.error('Error sending email:', error)
         return "Error sending email. Please try again later."

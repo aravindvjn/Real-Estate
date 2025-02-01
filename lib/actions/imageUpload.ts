@@ -10,8 +10,13 @@ export async function imageUpload(base64Images: string[]) {
   try {
     const processedUrls = [];
 
-    for (const base64Image of base64Images) {
-      const uploadResponse = await cloudinary.uploader.upload(base64Image, {
+    for (const image of base64Images) {
+      if (image.startsWith("https://res.cloudinary.com/")) {
+        processedUrls.push(image);
+        continue;
+      }
+
+      const uploadResponse = await cloudinary.uploader.upload(image, {
         folder: "nextjs_base64_images",
       });
 
