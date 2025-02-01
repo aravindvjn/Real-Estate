@@ -1,4 +1,4 @@
-import AgentLists from "@/components/agents-page/agent-lists";
+import AgentLists from "@/components/member-page/agents-page/agent-lists";
 import { UserType } from "@/components/header/type";
 import { getAgents } from "@/lib/functions/getAgents";
 import React from "react";

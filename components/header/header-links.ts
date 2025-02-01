@@ -31,18 +31,18 @@ export const headerLinks: HeaderLinkType[] = [
     {
         name: 'Members',
         list: [
-            { text: 'Public Agents', href: '/agents?type=public' },
-            { text: 'Our Agents', href: '/agents' },
-            { text: 'Join Our Team', href: '/join' },
+            { text: 'Public Agents', href: '/members/agents?type=public' },
+            { text: 'Our Agents', href: '/members/agents' },
+            { text: 'Join Our Team', href: '/members/join' },
         ]
     },
     {
         name: 'Blog',
         list: [
             { text: 'Latest Articles', href: '/blog' },
-            { text: 'Buying Guide', href: '/blog/buying-guide' },
-            { text: 'Selling Guide', href: '/blog/selling-guide' },
-            { text: 'Investment Tips', href: '/blog/investment' },
+            { text: 'Buying Guide', href: '/blog/guide#buying_guide' },
+            { text: 'Selling Guide', href: '/blog/guide#selling_guide' },
+            { text: 'Investment Tips', href: '/blog/guide#investment_tips' },
         ]
     },
     {

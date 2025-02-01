@@ -1,5 +1,5 @@
 import React from "react";
-import { UserType } from "../header/type";
+import { UserType } from "../../header/type";
 import AgentCell from "./agent-cell";
 
 const AgentLists = ({

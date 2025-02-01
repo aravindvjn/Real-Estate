@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { VscAccount } from "react-icons/vsc";
-import { UserType } from "../header/type";
+import { UserType } from "../../header/type";
 import { FaLocationPin } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import Link from "next/link";

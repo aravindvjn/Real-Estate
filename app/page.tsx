@@ -1,4 +1,3 @@
-import Footer from "@/components/footer/footer";
 import DescriptionSection from "@/components/home-page/description-section";
 import FindPropertiesByCities from "@/components/home-page/find-properties";
 import HeroSection from "@/components/home-page/hero-section";
@@ -19,7 +18,6 @@ export default function Home() {
         <Suggestions />
       </Suspense>
       <FindPropertiesByCities />
-      <Footer />
     </Container>
   );
 }
