@@ -1,19 +1,17 @@
 import DetailedGuide from "@/components/blog-page/guide-page/detailed-guide/detailed-page";
 import { realEstateGuides } from "@/components/blog-page/guide-page/guides";
 import { notFound } from "next/navigation";
-import React from "react";
-import { PageProps } from "next"; 
 
-const Page = async ({ params }: PageProps<{ id: string }>) => {
-  const id = parseInt(params.id, 10);
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const {id} = await params;
 
-  if (isNaN(id)) {
+  if (id) {
     notFound();
   }
 
   const result = realEstateGuides
     .flatMap((guide) => guide.guides)
-    .find((item) => item.id === id);
+    .find((item) => item.id === Number(id));
 
   if (!result) {
     notFound();

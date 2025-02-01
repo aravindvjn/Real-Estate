@@ -29,7 +29,9 @@ export const getFilteredProperties = async (
         maxPrice,
         size,
         owner_id
-    }: getFilteredPropertiesProps,
+    }:
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        any,
     page: number = 0
 ): Promise<PropertyTypes[]> => {
     let code = "SELECT * FROM properties";

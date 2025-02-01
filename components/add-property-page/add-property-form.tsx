@@ -12,15 +12,15 @@ const AddPropertyForm = ({
   description = "",
   features = [],
   garage = 0,
-  id,
+  id="",
   image_urls = [],
   location = "",
-  owner_id,
+  owner_id="",
   price = "",
   size = "",
   title = "",
   type,
-}: PropertyTypes) => {
+}: Partial<PropertyTypes>) => {
   const [selectedImage, setSelectedImage] = useState<string[]>(image_urls);
   const pathName = usePathname();
   const [state, formAction, isPending] = useActionState(

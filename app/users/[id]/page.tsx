@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 
 type ParamsProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 const page = async ({ params }: ParamsProps) => {
   const { id } = await params;
@@ -21,7 +21,7 @@ const page = async ({ params }: ParamsProps) => {
   return (
     <div>
       <UserProfiles {...user} />
-      <PublishedProperties searchParams={{ owner_id: user?.user_id || "" }} />
+      <PublishedProperties searchParams={{ owner_id: user?.user_id }} />
     </div>
   );
 };

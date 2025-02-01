@@ -11,11 +11,11 @@ import { PropertyTypes } from "../cards/type";
 import CardSkeleton from "../cards/skeleton";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
+import { usePathname } from "next/navigation";
 
 const FilteredData = ({
   searchParams,
-  noOptions,
-}: PropertySearchParams & { noOptions?: boolean }) => {
+}: PropertySearchParams) => {
   const [properties, setProperties] = useState<PropertyTypes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(true);
@@ -23,7 +23,9 @@ const FilteredData = ({
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const ref = useRef(null);
   const isVisible = useInView(ref);
-  
+  const pathName = usePathname()
+  const noOptions = pathName.split('/')[1] ==='users'
+
   const fetchData = async (refetch?: boolean) => {
     if (refetch) {
       setIsRefetching(true);
@@ -33,7 +35,7 @@ const FilteredData = ({
     }
 
     const data =
-      (await getFilteredProperties(searchParams!, refetch ? 0 : loadedPage)) ??
+      (await getFilteredProperties(searchParams, refetch ? 0 : loadedPage)) ??
       [];
     if (data.length > 0) {
       setProperties((prev) => {

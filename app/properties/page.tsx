@@ -1,10 +1,10 @@
 "use server";
 import FilterProperties from "@/components/properties-page/filter-properties";
-import { getFilteredPropertiesProps } from "@/lib/functions/getFilteredProperties";
 import React from "react";
 
 export type PropertySearchParams = {
-  searchParams?: getFilteredPropertiesProps;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  searchParams?: Promise<any>;
 };
 
 const Page = async ({ searchParams }: PropertySearchParams) => {
