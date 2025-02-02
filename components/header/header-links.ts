@@ -15,7 +15,7 @@ export const headerLinks: HeaderLinkType[] = [
             { text: 'Home', href: '/' },
             { text: 'Why Work With Us', href: '/#whyshouldworkwithus' },
             { text: 'Featured Homes', href: '/#featured-homes' },
-            { text: 'Cities We Serve', href: '/#cities' },
+            { text: 'Places We Serve', href: '/#cities' },
         ]
     },
     {
@@ -40,7 +40,7 @@ export const headerLinks: HeaderLinkType[] = [
         name: 'Blog',
         list: [
             { text: 'Latest Articles', href: '/blog' },
-            { text: 'Buying Guide', href: '/blog/guide#buying_guide' },
+            { text: 'Buying Guide', href: '/blog/guide' },
             { text: 'Selling Guide', href: '/blog/guide#selling_guide' },
             { text: 'Investment Tips', href: '/blog/guide#investment_tips' },
         ]

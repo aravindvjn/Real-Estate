@@ -55,7 +55,7 @@ function Card({
               {bedrooms}
             </span>
             <span className="flex items-center gap-0.5 lg:gap-1">
-              <FaBath size={12} />
+              <FaBath size={10} />
               {bathrooms}
             </span>
           </div>
