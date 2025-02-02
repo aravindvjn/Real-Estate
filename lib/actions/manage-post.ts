@@ -9,7 +9,9 @@ export type PrevManagePostType = {
     success: boolean;
 };
 
-export const managePost = async (id: string, operation: "delete" | "sold", prevState: PrevManagePostType) => {
+export const managePost = async (id: string | string[] | undefined, operation: "delete" | "sold") => {
+
+
     if (!id) {
         return { message: "Invalid ID", success: false };
     }
@@ -24,6 +26,7 @@ export const managePost = async (id: string, operation: "delete" | "sold", prevS
 
         const user_id = user.id;
         let queryText = "";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let queryParams: any[] = [];
         if (operation === "delete") {
             queryText = isADMIN
@@ -41,7 +44,7 @@ export const managePost = async (id: string, operation: "delete" | "sold", prevS
 
         revalidatePath(`/properties/${id}`);
         revalidatePath("/");
-        
+
         return { message: operation === "delete" ? "Property deleted successfully" : "Property marked as sold", success: true };
     } catch (error) {
         console.error("Database error:", error);

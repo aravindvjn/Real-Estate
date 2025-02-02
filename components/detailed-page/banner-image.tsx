@@ -1,7 +1,6 @@
 import SoldIcon from "@/assets/svg/sold";
 import { formatINR, numberToWords } from "@/globals/helper/formateMoney";
 import React from "react";
-import { BiCheck } from "react-icons/bi";
 
 const BannerImage = ({
   title,

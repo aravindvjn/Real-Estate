@@ -7,23 +7,22 @@ import { AnimatePresence, motion } from "framer-motion";
 import { managePost } from "@/lib/actions/manage-post";
 import Heading from "../ui/heading";
 
+type ShowPopUpType = "delete" | "sold";
+
+
 const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
   const { id } = useParams();
-  if (!id || typeof id !== "string") return null;
 
-  const [showPopUp, setShowPopUp] = useState<"delete" | "sold">();
+  const [showPopUp, setShowPopUp] = useState<ShowPopUpType | null>(null);
 
   const [state, formAction, isPending] = useActionState(
-    managePost.bind(null, id, showPopUp!),
-    {
-      message: "",
-      success: false,
-    }
+    managePost.bind(null, id, showPopUp ?? "sold"), 
+    { message: "", success: false }
   );
 
   useEffect(() => {
     if (state.success) {
-      setShowPopUp(undefined);
+      setShowPopUp(null);
     }
   }, [state.success]);
 
@@ -58,7 +57,7 @@ const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  onClick={() => setShowPopUp(undefined)}
+                  onClick={() => setShowPopUp(null)}
                 >
                   <motion.div
                     className="bg-white rounded-lg p-5 shadow-lg"
@@ -89,7 +88,7 @@ const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
                       <button
                         type="button"
                         className="px-4 py-2 bg-gray-300 rounded"
-                        onClick={() => setShowPopUp(undefined)}
+                        onClick={() => setShowPopUp(null)}
                       >
                         Cancel
                       </button>
