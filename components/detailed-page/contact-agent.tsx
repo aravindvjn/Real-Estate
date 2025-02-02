@@ -4,21 +4,26 @@ import Input from "../ui/input";
 import { sendMail } from "@/lib/actions/sendMail";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import OperationSection from "./opertion-section";
 
-const ContactAgent = ({ email }: { email: string }) => {
+const ContactAgent = ({
+  email,
+  isAdmin,
+}: {
+  email: string;
+  isAdmin: boolean;
+}) => {
   const [state, formAction, isPending] = useActionState(sendMail, "");
   const { data: session, status } = useSession();
-  const { id } = useParams();
 
   if (status === "loading") {
     return <p className="pt-5 opacity-60">Loading...</p>;
   }
 
-  if (session?.user?.email === email) {
+  if (session?.user?.email === email || isAdmin) {
     return (
-      <div className="mt-5 text-blue-500 flex flex-col gap-2 px-5 py-2 bg-blue-200 border border-blue-700 rounded-lg sm:w-fit">
-        <Link href={`/properties/${id}/edit`}>Edit Post</Link>
+      <div>
+        <OperationSection isAdmin={isAdmin} />
       </div>
     );
   }
@@ -49,7 +54,7 @@ const ContactAgent = ({ email }: { email: string }) => {
         action={formAction}
         className="flex flex-col gap-2 text-sm sm:gap-4 max-w-[500px]"
       >
-        <Input name="name" onlyPlaceholder="Your Name" required/>
+        <Input name="name" onlyPlaceholder="Your Name" required />
         <Input
           name="phone_number"
           type="tel"

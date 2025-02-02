@@ -29,5 +29,6 @@ export type PropertyTypes = {
     updated_at: string;
     owner_id: string;
     description: string;
-    type: 'rent' | 'sale'
+    type: 'rent' | 'sale';
+    sold: boolean
 }

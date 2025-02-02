@@ -1,5 +1,6 @@
 "use server";
 import FilterProperties from "@/components/properties-page/filter-properties";
+import { getFilteredPropertiesProps } from "@/lib/functions/getFilteredProperties";
 import React from "react";
 
 export type PropertySearchParams = {

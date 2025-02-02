@@ -13,9 +13,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { usePathname } from "next/navigation";
 
-const FilteredData = ({
-  searchParams,
-}: PropertySearchParams) => {
+const FilteredData = ({ searchParams }: PropertySearchParams) => {
   const [properties, setProperties] = useState<PropertyTypes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(true);
@@ -23,8 +21,10 @@ const FilteredData = ({
   const [isFinished, setIsFinished] = useState<boolean>(false);
   const ref = useRef(null);
   const isVisible = useInView(ref);
-  const pathName = usePathname()
-  const noOptions = pathName.split('/')[1] ==='users'
+  const pathName = usePathname();
+  const noOptions: boolean = ["users", "account"].includes(
+    pathName.split("/")[1]
+  );
 
   const fetchData = async (refetch?: boolean) => {
     if (refetch) {
@@ -70,7 +70,7 @@ const FilteredData = ({
         {!noOptions && <SearchInput full />}
         {!noOptions && <FilterMenu />}
       </div>
-      <div className="grid w-full grid-cols-2 gap-2 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
+      <div className="grid w-full grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4">
         {properties?.length > 0 &&
           properties.map((property) => (
             <Card key={property.id} {...property} />

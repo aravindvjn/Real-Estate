@@ -4,12 +4,22 @@ import Link from "next/link";
 import React from "react";
 import { MdEmail, MdPhone } from "react-icons/md";
 import ContactAgent from "./contact-agent";
+import { isAdmin } from "@/lib/functions/getCurrentUser";
 
-const OwnerDetails = async ({ owner_id }: { owner_id: string }) => {
+const OwnerDetails = async ({
+  owner_id,
+  sold,
+}: {
+  owner_id: string;
+  sold: boolean;
+}) => {
   const user = await getUser(owner_id);
+
   if (!user) {
     return null;
   }
+  const admin = await isAdmin();
+
   return (
     <div className="py-5">
       <p className="text-lg md:text-xl font-bold">Publised By</p>
@@ -41,7 +51,7 @@ const OwnerDetails = async ({ owner_id }: { owner_id: string }) => {
           </p>
         </div>
       </Link>
-      <ContactAgent email={user.email} />
+      {!sold && <ContactAgent isAdmin={admin || false} email={user.email} />}
     </div>
   );
 };

@@ -18,7 +18,7 @@ async function Suggestions() {
         Homes For You
       </p>
       <p className="text-[10px]">We’ve handpicked some suggestions just for you ❤️</p>
-      <div className="mt-5 flex overflow-x-scroll sm:overflow-hidden sm:grid grid-cols-3 gap-2 md:gap-4  lg:gap-6 items-center w-full pl-2 sm:pl-0">
+      <div className="mt-5 flex overflow-x-scroll sm:overflow-hidden sm:grid grid-cols-3 gap-3 md:gap-4  lg:gap-6 items-center w-full pl-3 sm:pl-0">
         {properties.map((property) => (
           <Card key={property.id} {...property} />
         ))}

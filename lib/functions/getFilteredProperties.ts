@@ -1,4 +1,4 @@
-'use server'
+'use server';
 import type { PropertyTypes } from "@/components/cards/type";
 import { query } from "../db";
 
@@ -38,6 +38,11 @@ export const getFilteredProperties = async (
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const params: any[] = [];
     const conditions: string[] = [];
+
+    if (!owner_id) {
+        conditions.push("sold = FALSE");
+    }
+
     if (type) {
         conditions.push(`type = $${params.length + 1}`);
         params.push(type);
@@ -47,7 +52,6 @@ export const getFilteredProperties = async (
         conditions.push(`(location ILIKE $${params.length + 1} OR title ILIKE $${params.length + 1} OR description ILIKE $${params.length + 1})`);
         params.push(`%${location}%`);
     }
-
 
     if (search) {
         conditions.push(`(title ILIKE $${params.length + 1} OR description ILIKE $${params.length + 1})`);
@@ -101,7 +105,8 @@ export const getFilteredProperties = async (
     }
 
     code += ` ORDER BY created_at DESC LIMIT 24 OFFSET $${params.length + 1}`;
-    params.push((page) * 10);
+    params.push(page * 10);
+
     const results = await query(code, params);
     return results.rows || [];
 };

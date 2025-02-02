@@ -47,3 +47,15 @@ export const isAdmin = async (): Promise<boolean | null> => {
     }
     return false
 }
+
+
+export const getUserSession = async (): Promise<{
+    id: string;
+    email: string;
+} | null> => {
+    const session: SessionType | null = await getServerSession(authOptions)
+    if (!session || !session.user || !session.user.email) {
+        return null;
+    }
+    return session.user;
+}
