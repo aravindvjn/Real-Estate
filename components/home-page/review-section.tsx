@@ -93,7 +93,7 @@ const ReviewSection = () => {
             </button>
           </div>
         ) : (
-          <div className="flex-1 opacity-40">Loading...</div>
+          <div className="flex-1 opacity-40 text-[10px]">Loading...</div>
         )}
       </div>
       {showInput && (
