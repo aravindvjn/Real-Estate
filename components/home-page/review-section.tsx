@@ -101,7 +101,7 @@ const ReviewSection = () => {
           <textarea
             minLength={3}
             maxLength={200}
-            className="border h-[100px] border-black w-full placeholder:text-[12px] p-3 rounded-md"
+            className="border h-[100px] border-black w-full text-[12px] placeholder:text-[12px] p-3 rounded-md"
             name="review_text"
             placeholder="Express your thoughts"
             required

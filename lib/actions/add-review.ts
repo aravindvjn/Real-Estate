@@ -1,6 +1,6 @@
 'use server'
 import xss from "xss";
-import { getUserSession } from "../functions/getCurrentUser";
+import { getCurrentUser, getUserSession } from "../functions/getCurrentUser";
 import { query } from '@/lib/db'
 import { revalidatePath } from "next/cache";
 export const addReview = async (prev: { message: string, success: boolean }, formData: FormData) => {
@@ -32,8 +32,16 @@ export const addReview = async (prev: { message: string, success: boolean }, for
             };
         }
 
-        const user_id = user?.id
-
+        let user_id = user?.id
+        if (!user_id) {
+            user_id = (await getCurrentUser(true))?.user_id;
+            if (!user_id) {
+                return {
+                    message: "Failed to retrieve user information. Please Login again.",
+                    success: false,
+                };
+            }
+        }
         const queryText = `
     INSERT INTO reviews (user_id, rating, review_text, created_at)
     VALUES ($1, $2, $3, CURRENT_TIMESTAMP)

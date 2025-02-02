@@ -16,7 +16,7 @@ const AuthPage = () => {
     <div className="flex items-center bg-white  justify-center p-5 flex-col rounded-md m-5 shadow-md  text-black">
       <Container center className="flex-col gap-2">
         <SiNextdotjs size={50} />
-        <p className="font-light text-3xl">Welcome to {app_name}</p>
+        <p className="font-light text-2xl sm:text-3xl">Welcome to {app_name}</p>
       </Container>
       <p className="pb-4">Sign in to continue</p>
       <button

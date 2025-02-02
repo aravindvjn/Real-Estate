@@ -62,7 +62,7 @@ function AccountCircle({ user }: { user: BasicUserDataType }) {
     ) : (
       <Image
         onDoubleClick={() => router.push("/account")}
-        className="h-[23px] w-[23px] rounded-full"
+        className="h-[23px] w-[23px] rounded-full object-cover"
         src={user?.profile_picture_url}
         width={30}
         height={30}
