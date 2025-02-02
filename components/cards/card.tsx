@@ -35,17 +35,17 @@ function Card({
       >
         {sold ? "SOLD" : `FOR ${type}`}
       </button>
-      <div className="p-2 bg-white flex flex-col rounded-md gap-0.5 md:gap-1.5">
+      <div className="p-2 bg-white text-[10px] sm:text-[12px] flex flex-col rounded-md gap-0.5 md:gap-1.5">
         <p className="font-semibold line-clamp-1">{title}</p>
         <p className="flex items-center gap-1 line-clamp-1 opacity-80">
           <IoLocationOutline />
           {location}
         </p>
-        <p className="text-[10px] opacity-70 flex items-center gap-1">
+        <p className=" opacity-70 flex items-center gap-1">
           <LuScale3D size={12} />
           {size} sq.ft
         </p>
-        <div className="flex flex-col sm:flex-row justify-between sm:gap-4 text-[10px]">
+        <div className="flex  flex-col sm:flex-row justify-between sm:gap-4 ">
           <p className="text-orange-500 order-2 sm:order-1 font-semibold">
             Rs.{formatINR(Number(price))}
           </p>

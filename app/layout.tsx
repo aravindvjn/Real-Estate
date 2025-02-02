@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ClientWrapper } from "@/components/ui/client-wrapper";
+import ProgressBar from "@/components/ui/progress-bar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,7 +29,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        
+        <ProgressBar />
+
         <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>

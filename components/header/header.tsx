@@ -7,6 +7,7 @@ import { VscAccount } from "react-icons/vsc";
 import { app_name } from "@/globals/constants";
 import { TbBrandNextjs } from "react-icons/tb";
 import Drawer from "./drawer";
+
 const Header = ({ greenTheme }: { greenTheme?: boolean }) => {
   return (
     <div

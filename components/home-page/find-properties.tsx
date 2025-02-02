@@ -8,20 +8,28 @@ import Link from "next/link";
 async function FindPropertiesByCities() {
   const cities: CitiesProps[] = await getCities();
   return (
-    <div
-      id="cities"
-      className="grid grid-cols-3 gap-2 lg:grid-cols-4 sm:gap-3 md:gap-4 px-[10px] sm:px-[50px] md:px-[100px] lg:px-[200px] mb-[100px]"
-    >
-      {cities.map((city, index) => {
-        return (
-          <SingleCell
-            key={index}
-            city={city.city}
-            image_url={city.image_url}
-            no_properties={city.no_properties}
-          />
-        );
-      })}
+    <div>
+      <div className="flex justify-center flex-col items-center  py-5">
+        <p className="text-sm font-semibold">Find Properties in these places</p>
+        <p className="text-[10px]">
+        Discover a wide range of properties available in these sought-after locations
+        </p>
+      </div>
+      <div
+        id="cities"
+        className="grid grid-cols-3 gap-2 lg:grid-cols-4 sm:gap-3 md:gap-4 px-[10px] sm:px-[50px] md:px-[100px] lg:px-[200px] mb-[50px]"
+      >
+        {cities.map((city, index) => {
+          return (
+            <SingleCell
+              key={index}
+              city={city.city}
+              image_url={city.image_url}
+              no_properties={city.no_properties}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }
