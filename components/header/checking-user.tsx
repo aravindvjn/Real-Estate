@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import AccountCircle from "./AccountCircle";
 import { getCurrentUser } from "@/lib/functions/getCurrentUser";
+import AccountCircle from "./accountCircle";
 
 const CheckingUser = () => {
   const [user, setUser] = useState(null);
