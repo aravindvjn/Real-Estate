@@ -60,7 +60,7 @@ const ReviewSection = () => {
                 <Image
                   height={50}
                   width={50}
-                  className="rounded-full h-[40px] w-[40px] sm:h-[50px] sm:w-[50px]"
+                  className="rounded-full h-[40px] w-[40px] sm:h-[50px] sm:w-[50px] object-cover"
                   alt="user profile"
                   src={review[currentIndex]?.profile_picture_url}
                 />

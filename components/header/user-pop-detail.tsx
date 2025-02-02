@@ -22,7 +22,7 @@ const UserPopDetails = ({
           </Container>
         ) : (
           <Image
-            className="rounded-full object-cover"
+            className="rounded-full object-cover h-[100px] w-[100px]"
             src={profile_picture_url}
             alt={first_name}
             height={100}
