@@ -1,4 +1,4 @@
-export const app_name = 'QuickStayIn'
+export const app_name = 'Real Estate'
 export const app_logo = "https://images.pexels.com/photos/6633/car-superhero-symbol-batman.jpg?auto=compress&cs=tinysrgb&w=600"
 export const cities = [
         { city: "Alappuzha", image_url: "https://images.pexels.com/photos/19743480/pexels-photo-19743480/free-photo-of-the-backwaters-of-kerala-refer-to-a-network-of-interconnected-lakes-rivers-canals-and-lagoons-that-run-parallel-to-the-arabian-sea-coast.jpeg?auto=compress&cs=tinysrgb&w=400" },
