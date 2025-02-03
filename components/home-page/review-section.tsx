@@ -9,6 +9,8 @@ import Image from "next/image";
 
 const ReviewSection = () => {
   const [showInput, setShowInput] = useState<boolean>(false);
+
+  //creating a new review
   const [state, action, isPending] = useActionState(addReview, {
     message: "",
     success: false,
@@ -27,16 +29,23 @@ const ReviewSection = () => {
     setCurrentIndex((prev) => (prev > 0 ? prev - 1 : 0));
   };
 
+
   useEffect(() => {
+
     const fetchReview = async () => {
+
       const res = await getReviews();
+
       if (res) {
+
         setReview(res.randomReview);
         setRating(res.averageRating);
       }
+
     };
 
     fetchReview();
+
   }, []);
 
   return (

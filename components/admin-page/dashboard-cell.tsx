@@ -9,6 +9,7 @@ const DashboardCell = ({
   text: string;
   children: React.ReactNode;
 }) => {
+  
   return (
     <div className="flex p-5  items-center bg-white shadow-md rounded-md gap-3 sm:gap-5 w-[230px]">
       {children}

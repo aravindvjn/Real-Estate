@@ -4,26 +4,38 @@ import React, { useEffect, useState } from "react";
 import { IoArrowBack, IoArrowForward } from "react-icons/io5";
 
 const ImageSlideShow = ({ image_urls }: { image_urls: string[] }) => {
+
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [width, setWidth] = useState(0);
 
+  //getting the width of the window to set the image width
   useEffect(() => {
+
     const handleResize = () => setWidth(window.innerWidth);
     handleResize();
+
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const no_images = image_urls?.length;
+
+  //handlers for changing the image index when arrow buttons are clicked
   const changeImageHandler = (forward: boolean) => {
+
     if (forward) {
+
       setCurrentIndex((prev) => {
         return prev === no_images - 1 ? 0 : prev + 1;
       });
+
     } else {
+
       setCurrentIndex((prev) => {
         return prev === 0 ? no_images - 1 : prev - 1;
       });
+      
     }
   };
 

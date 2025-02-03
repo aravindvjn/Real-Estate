@@ -11,6 +11,8 @@ type DetailedPageProps = {
 };
 
 const DetailedPage = ({ property }: DetailedPageProps) => {
+
+  //Including more features to the existing one
   const additionalFeatures = [];
 
   if (property.bathrooms > 0) {
@@ -44,7 +46,8 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
           <p className="text-lg md:text-xl font-bold py-2">Gallery</p>
           <ImageSlideShow image_urls={property.image_urls} />
           <Suspense fallback={<p>Loading...</p>}>
-            <OwnerDetails sold={property.sold} owner_id={property.owner_id!} />
+            <OwnerDetails 
+            property_details={property} sold={property.sold} owner_id={property.owner_id!} />
           </Suspense>
         </div>
       </div>

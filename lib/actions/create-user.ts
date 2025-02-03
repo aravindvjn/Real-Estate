@@ -26,13 +26,13 @@ export const createUser = async (selectedImage: string[], pathName: string, prev
 
   if (!firstName) {
     returnState.push('First Name is required.');
-  } else if (firstName.length < 2 || firstName.length > 15) {
+  } else if (firstName.length < 1 || firstName.length > 15) {
     returnState.push('First Name must be between 2 and 15 characters.');
   }
 
   if (!lastName) {
     returnState.push('Last Name is required.');
-  } else if (lastName.length < 2 || lastName.length > 15) {
+  } else if (lastName.length < 1 || lastName.length > 15) {
     returnState.push('Last Name must be between 2 and 15 characters.');
   }
 

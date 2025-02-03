@@ -23,6 +23,7 @@ const Dashboard = async () => {
       text: "Sold Properties",
       icon: <MdProductionQuantityLimits size={25} color="white" />,
     },
+    
   ];
   return (
     <div>

@@ -11,12 +11,16 @@ import Container from "../ui/container";
 import { FaCrown } from "react-icons/fa";
 
 function AccountCircle({ user }: { user: BasicUserDataType }) {
+
   const [showMenu, setShowMenu] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  //toggle menu when there is a click
   const toggleMenu = () => setShowMenu((prev) => !prev);
 
+  //get button position to calculate the position of the menu
   const getButtonPosition = () => {
     if (!buttonRef.current) return { top: 0, left: 0 };
     const rect = buttonRef.current.getBoundingClientRect();
@@ -26,6 +30,7 @@ function AccountCircle({ user }: { user: BasicUserDataType }) {
     };
   };
 
+  //to close the menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -51,6 +56,7 @@ function AccountCircle({ user }: { user: BasicUserDataType }) {
     };
   }, [showMenu]);
 
+  //Conditionally rendering the profile
   const profile = user?.profile_picture_url ? (
     user?.isAdmin ? (
       <Container

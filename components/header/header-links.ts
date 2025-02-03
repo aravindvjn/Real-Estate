@@ -48,8 +48,7 @@ export const headerLinks: HeaderLinkType[] = [
     {
         name: 'Pages',
         list: [
-            { text: 'About Us', href: '/pages/about' },
-            { text: 'Testimonials', href: '/pages/testimonials' },
+            { text: 'About Us', href: '/pages/aboutus' },
             { text: 'FAQs', href: '/pages/faq' },
         ]
     },

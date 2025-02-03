@@ -6,25 +6,34 @@ import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { managePost } from "@/lib/actions/manage-post";
 import Heading from "../ui/heading";
+import toast from "react-hot-toast";
 
 type ShowPopUpType = "delete" | "sold";
-
 
 const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
   const { id } = useParams();
 
   const [showPopUp, setShowPopUp] = useState<ShowPopUpType | null>(null);
 
+  //managing the post
   const [state, formAction, isPending] = useActionState(
-    managePost.bind(null, id, showPopUp ?? "sold"), 
+    managePost.bind(null, id, showPopUp ?? "sold"),
     { message: "", success: false }
   );
 
+  //If success, Close the popop
   useEffect(() => {
+    if (state.message) {
+      if (state.success) {
+        toast.success(state.message);
+      } else {
+        toast.error(state.message);
+      }
+    }
     if (state.success) {
       setShowPopUp(null);
     }
-  }, [state.success]);
+  }, [state.message]);
 
   return (
     <div className="pt-4">
@@ -45,7 +54,7 @@ const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
           className="bg-yellow-500 font-bold px-5 py-2 border border-yellow-600 text-white rounded"
           onClick={() => setShowPopUp("sold")}
         >
-          Set as Sold
+          Mark as Sold
         </button>
 
         {typeof window !== "undefined" &&

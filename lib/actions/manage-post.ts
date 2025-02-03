@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { query } from "../db";
 import { getUserSession, isAdmin } from "../functions/getCurrentUser";
+import { redirect } from "next/navigation";
 
 export type PrevManagePostType = {
     message: string;
@@ -13,7 +14,7 @@ export const managePost = async (id: string | string[] | undefined, operation: "
 
 
     if (!id) {
-        return { message: "Invalid ID", success: false };
+        return { message: "Failed! Please Try again later.", success: false };
     }
 
     try {
@@ -45,9 +46,14 @@ export const managePost = async (id: string | string[] | undefined, operation: "
         revalidatePath(`/properties/${id}`);
         revalidatePath("/");
 
-        return { message: operation === "delete" ? "Property deleted successfully" : "Property marked as sold", success: true };
     } catch (error) {
         console.error("Database error:", error);
         return { message: "Database error", success: false };
     }
+    
+    if (operation === "delete") {
+        redirect('/')
+    }
+
+    return { message: "Property marked as sold", success: true };
 };

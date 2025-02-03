@@ -8,7 +8,9 @@ export type HeaderDropDownProps = {
   options: HeaderLinkType[];
 };
 function HeaderDropDown({ options }: HeaderDropDownProps) {
+  
   const [open, setOpen] = useState<number | undefined>();
+
   return (
     <div className="sm:flex gap-2 md:gap-3 lg:gap-5 hidden">
       {options?.map((option, index) => (

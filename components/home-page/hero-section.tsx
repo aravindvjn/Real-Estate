@@ -4,6 +4,7 @@ import Header from "../header/header";
 import Link from "next/link";
 
 function HeroSection() {
+  
   return (
     <div
     style={{

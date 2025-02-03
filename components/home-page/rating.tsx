@@ -2,6 +2,8 @@ import React from "react";
 import { IoStar, IoStarHalf, IoStarOutline } from "react-icons/io5";
 
 const Rating = ({ rate = 5 }: { rate: number }) => {
+
+  //Rendering the rating starts
   const renderStars = () => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {

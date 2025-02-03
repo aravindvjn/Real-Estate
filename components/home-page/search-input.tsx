@@ -4,9 +4,13 @@ import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 
 function SearchInput({ full }: { full?: boolean }) {
+
   const searchParam = useSearchParams().get("search");
+  
   const [searchTerm, setSearchTerm] = useState<string>(searchParam || "");
+
   const router = useRouter();
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     router.push(`/properties?search=${encodeURIComponent(searchTerm)}`);

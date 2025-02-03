@@ -1,7 +1,9 @@
 'use server'
+import { PropertyTypes } from '@/components/cards/type'
+import { mailOptions as Options } from '@/globals/helper/mailOption'
 import nodemailer from 'nodemailer'
 
-export async function sendMail(prev: string, formData: FormData) {
+export async function sendMail(property:PropertyTypes,prev: string, formData: FormData) {
     const sender_email = formData.get('sender_email') as string
     const name = formData.get('name') as string
     const email = formData.get('email') as string
@@ -24,12 +26,14 @@ export async function sendMail(prev: string, formData: FormData) {
             rejectUnauthorized: false,
         },
     });
-    const mailOptions = {
-        from: sender_email,
-        to: email,
-        subject: `New Message from ${name}`,
-        text: `Message: ${message}\n\nContact Info:\nName: ${name}\nEmail: ${sender_email}\nPhone: ${phone_number}`,
-    }
+    const mailOptions = Options({
+        sender_email,
+        name,
+        email,
+        message,
+        phone_number,
+        property,
+    })
 
     try {
         await transporter.sendMail(mailOptions)

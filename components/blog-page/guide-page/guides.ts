@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type RealEstateGuidesType = {
   heading: string;
   subheading: string;
@@ -10,6 +12,7 @@ export type DetailedGuidesType = {
   link: string;
   image: string;
   details: string;
+  children?: ReactNode;
 }
 export const realEstateGuides: RealEstateGuidesType[] = [
   {

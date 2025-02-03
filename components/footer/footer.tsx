@@ -5,6 +5,7 @@ import { footerContent } from "./footer-links";
 import Link from "next/link";
 import { BsApple } from "react-icons/bs";
 import { BiLogoPlayStore } from "react-icons/bi";
+import { app_name } from "@/globals/constants";
 
 function Footer() {
   return (
@@ -83,7 +84,7 @@ function Footer() {
       <div>
         <hr className="my-5 opacity-20" />
         <p className="text-center">
-          &copy; {new Date().getFullYear()} JustHome. All rights reserved.
+          &copy; {new Date().getFullYear()} {app_name}. All rights reserved.
         </p>
       </div>
     </div>

@@ -28,7 +28,8 @@ export const getFilteredProperties = async (
         minPrice,
         maxPrice,
         size,
-        owner_id
+        owner_id,
+        sort
     }:
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         any,
@@ -103,8 +104,16 @@ export const getFilteredProperties = async (
     if (conditions.length > 0) {
         code += " WHERE " + conditions.join(" AND ");
     }
-
-    code += ` ORDER BY created_at DESC LIMIT 24 OFFSET $${params.length + 1}`;
+    if (sort) {
+        if (sort === 'asc') {
+            code += " ORDER BY price ASC";
+        } else {
+            code += " ORDER BY price DESC";
+        }
+    } else {
+        code += " ORDER BY created_at DESC";
+    }
+    code += ` LIMIT 24 OFFSET $${params.length + 1}`;
     params.push(page * 10);
 
     const results = await query(code, params);

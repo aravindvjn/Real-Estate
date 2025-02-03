@@ -7,6 +7,7 @@ import { headerLinks } from "./header-links";
 import Link from "next/link";
 
 const Drawer = ({ greenTheme }: { greenTheme: boolean }) => {
+
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const [listOutIndex, setListOutIndex] = useState<number | null>(null);
   const [isClient, setIsClient] = useState<boolean>(false);
@@ -14,9 +15,12 @@ const Drawer = ({ greenTheme }: { greenTheme: boolean }) => {
   const listOutHandler = (index: number) => {
     setListOutIndex((prev) => (prev === index ? null : index));
   };
+
+  //checking that its client side
   useEffect(() => {
     setIsClient(true);
   }, []);
+
   return (
     <>
       <button

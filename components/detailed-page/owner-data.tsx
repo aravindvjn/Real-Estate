@@ -5,13 +5,16 @@ import React from "react";
 import { MdEmail, MdPhone } from "react-icons/md";
 import ContactAgent from "./contact-agent";
 import { isAdmin } from "@/lib/functions/getCurrentUser";
+import { PropertyTypes } from "../cards/type";
 
 const OwnerDetails = async ({
   owner_id,
   sold,
+  property_details
 }: {
   owner_id: string;
   sold: boolean;
+  property_details: PropertyTypes | null
 }) => {
   const user = await getUser(owner_id);
 
@@ -51,7 +54,7 @@ const OwnerDetails = async ({
           </p>
         </div>
       </Link>
-      {!sold && <ContactAgent isAdmin={admin || false} email={user.email} />}
+      {!sold && <ContactAgent property_details={property_details!} isAdmin={admin || false} email={user.email} />}
     </div>
   );
 };

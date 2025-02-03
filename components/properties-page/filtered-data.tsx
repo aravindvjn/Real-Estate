@@ -14,54 +14,81 @@ import { useRef } from "react";
 import { usePathname } from "next/navigation";
 
 const FilteredData = ({ searchParams }: PropertySearchParams) => {
+
   const [properties, setProperties] = useState<PropertyTypes[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isRefetching, setIsRefetching] = useState(true);
   const [loadedPage, setLoadedPage] = useState<number>(0);
   const [isFinished, setIsFinished] = useState<boolean>(false);
+
   const ref = useRef(null);
   const isVisible = useInView(ref);
+
   const pathName = usePathname();
   const noOptions: boolean = ["users", "account"].includes(
     pathName.split("/")[1]
   );
 
+
+  //Fetching Properties
   const fetchData = async (refetch?: boolean) => {
+
     if (refetch) {
+
       setIsRefetching(true);
       setProperties([]);
+
     } else {
+
       setIsLoading(true);
+
     }
 
     const data =
       (await getFilteredProperties(searchParams, refetch ? 0 : loadedPage)) ??
       [];
+
     if (data.length > 0) {
+
       setProperties((prev) => {
         if (refetch) {
-          return data;
+          return data; 
         }
-        return [...prev, ...data];
+        const merged = [...prev, ...data];
+        const uniqueProperties = Array.from(new Map(merged.map(item => [item.id, item])).values());
+        return uniqueProperties;
       });
+      
 
       setLoadedPage((prev) => prev + 1);
+
     } else {
       setIsFinished(true);
     }
+
     setIsLoading(false);
     setIsRefetching(false);
+
   };
 
+
+
+  //fetching properties in the first render
   useEffect(() => {
+
     setLoadedPage(0);
     fetchData(true);
+
   }, [searchParams]);
 
+
+//Loading more pages
   useEffect(() => {
+
     if (isVisible && !isLoading && !isRefetching && !isFinished) {
       fetchData();
     }
+
   }, [isVisible]);
 
   return (

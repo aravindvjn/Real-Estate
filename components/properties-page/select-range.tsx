@@ -9,6 +9,7 @@ const SelectRange = ({
   priceRange: [number, number];
   setPriceRange: (newRange: [number, number]) => void;
 }) => {
+  
   const formatPrice = (price: number) => (price > 99 ? price / 100 : price);
   const priceLabel = (price: number) => (price > 99 ? "crore" : "lakh");
 

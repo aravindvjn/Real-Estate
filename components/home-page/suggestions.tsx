@@ -6,6 +6,8 @@ import { PropertyTypes } from "../cards/type";
 import Link from "next/link";
 
 async function Suggestions() {
+
+  //getting suggestions
   const properties: PropertyTypes[] = await getSuggestion();
 
   if (!properties) {

@@ -5,21 +5,25 @@ import { sendMail } from "@/lib/actions/sendMail";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import OperationSection from "./opertion-section";
+import { PropertyTypes } from "../cards/type";
 
 const ContactAgent = ({
   email,
   isAdmin,
+  property_details
 }: {
   email: string;
   isAdmin: boolean;
+  property_details:PropertyTypes
 }) => {
-  const [state, formAction, isPending] = useActionState(sendMail, "");
+  const [state, formAction, isPending] = useActionState(sendMail.bind(null,property_details), "");
   const { data: session, status } = useSession();
 
   if (status === "loading") {
     return <p className="pt-5 opacity-60">Loading...</p>;
   }
 
+  //Can edit the property, if its the creator or admin
   if (session?.user?.email === email || isAdmin) {
     return (
       <div>
@@ -28,6 +32,7 @@ const ContactAgent = ({
     );
   }
 
+  //User need authentication to contact the property owner
   if (!session?.user?.email) {
     return (
       <div className="mt-5 text-red-500 flex flex-col gap-2 px-5 py-2 bg-red-200 border border-red-700 rounded-lg sm:w-fit">
@@ -45,6 +50,7 @@ const ContactAgent = ({
     );
   }
 
+  //If owner email is not available
   if (!email) return;
 
   return (

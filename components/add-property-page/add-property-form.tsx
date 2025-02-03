@@ -21,8 +21,12 @@ const AddPropertyForm = ({
   title = "",
   type,
 }: Partial<PropertyTypes>) => {
+
   const [selectedImage, setSelectedImage] = useState<string[]>(image_urls);
+
   const pathName = usePathname();
+
+  //To create a new property
   const [state, formAction, isPending] = useActionState(
     addProperty.bind(null, selectedImage, {
       pathName,
@@ -34,7 +38,7 @@ const AddPropertyForm = ({
 
   return (
     <div className="p-5 md:px-10">
-      <p className="font-semibold">Add New Property</p>
+      <p className="font-semibold">{pathName.split('/')[3] === "edit" ? "Edit Property" : "Add New Property"}</p>
       <form
         action={formAction}
         className="text-[12px] max-w-[450px] flex flex-col gap-4"
