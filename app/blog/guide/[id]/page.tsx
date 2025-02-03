@@ -4,8 +4,7 @@ import { notFound } from "next/navigation";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const {id} = await params;
-
-  if (id) {
+  if (!id) {
     notFound();
   }
 
@@ -19,7 +18,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <div>
-      <DetailedGuide {...result} />
+      <DetailedGuide 
+      {...result} />
     </div>
   );
 };
