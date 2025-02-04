@@ -11,7 +11,7 @@ function Footer() {
   return (
     <div className="bg-[#1A1A1A] text-white px-10 py-6 m-1 rounded-lg font-light text-[10px] lg:text-[12px]">
       <div className="flex items-center justify-between pb-10 ">
-        <p>JustHome</p>
+        <p>{app_name}</p>
         <div className="flex gap-2 md:gap-4 items-center">
           <p>Follow Us</p>
           <Link href={'#'}>
