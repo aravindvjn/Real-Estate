@@ -13,6 +13,7 @@ const BlogGrid = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [isFinished, setIsFinished] = useState<boolean>(false);
 
+  //initialize useInView hook to track the buttom of the list
   const ref = useRef(null);
   const isVisible = useInView(ref);
 

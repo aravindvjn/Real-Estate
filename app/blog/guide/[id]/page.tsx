@@ -3,7 +3,10 @@ import { realEstateGuides } from "@/components/blog-page/guide-page/guides";
 import { notFound } from "next/navigation";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+
+  //extract id from params and get guide.
   const {id} = await params;
+  
   if (!id) {
     notFound();
   }

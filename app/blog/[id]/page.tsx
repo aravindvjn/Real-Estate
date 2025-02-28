@@ -9,12 +9,14 @@ type ParamsProps = {
 
 const page = async ({ params }: ParamsProps) => {
 
+  //Extract id from params, if no id, mark as notfound.
   const { id } = await params;
 
   if (!id) {
     notFound();
   }
 
+  //if id, get blog by id.
   const blog = await getBlogById(id)
 
   if (!blog) {

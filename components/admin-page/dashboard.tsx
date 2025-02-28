@@ -5,8 +5,11 @@ import { MdProductionQuantityLimits } from "react-icons/md";
 import { getDashboardData } from "@/lib/functions/getDashboardData";
 
 const Dashboard = async () => {
+
+  //get dashboard data from the server
   const dashboardData = await getDashboardData();
 
+  //filtering options with icons
   const data = [
     {
       count: dashboardData.totalUsers,
@@ -25,6 +28,8 @@ const Dashboard = async () => {
     },
     
   ];
+
+
   return (
     <div>
       <p className="font-bold text-lg sm:text-xl md:text-2xl">Dashboard</p>

@@ -6,13 +6,20 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = async () => {
+
+  //get session
   const session: SessionUserType | null = await getServerSession(authOptions);
+
+  //if no session, redirect
   if (!session) {
     redirect("/auth");
   }
+
+  //if user not new, redirect to home.
   if (!session?.isNewUser) {
     redirect("/");
   }
+  
   if (session?.isNewUser) {
     return (
       <div>

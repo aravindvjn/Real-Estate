@@ -13,20 +13,30 @@ type PropType = {
   user?: UserData;
   text?:string
 };
+
 const CreateUser = ({ session, user,text }: PropType) => {
+
   const pathName = usePathname();
+
+  //selected image url state
   const [selectedImage, setSelectedImage] = useState<string[]>([
     user?.profile_picture_url || "",
   ]);
+
+
+  //form action to create a new user
   const [state, formAction, isPending] = useActionState(
     createUser.bind(null, selectedImage, pathName),
     {
       message: [""],
     }
   );
+
   useEffect(() => {}, [selectedImage, setSelectedImage]);
+
   return (
     <Container center className="min-h-dvh bg-white-1 w-full px-5">
+
       <form
         action={formAction}
         className="p-5 rounded flex flex-col gap-2 text-[12px] w-full sm:max-w-[400px]"
@@ -35,11 +45,13 @@ const CreateUser = ({ session, user,text }: PropType) => {
           {text ? text : 'Create an account'}
         </p>
         <label htmlFor="image">Profile Picture</label>
+
         <PreviewImage
           selectedImage={selectedImage}
           setSelectedImage={setSelectedImage}
           initialImage={session?.user?.image}
         />
+        
         <Input
           defaultValue={user?.first_name}
           placeholder="First Name"

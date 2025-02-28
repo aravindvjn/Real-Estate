@@ -8,7 +8,10 @@ export type PropertySearchParams = {
 };
 
 const Page = async ({ searchParams }: PropertySearchParams) => {
+
+  //get search params and pass it to filterproperties.
   const data = await searchParams;
+  
   return (
     <div>
       <FilterProperties searchParams={data} />

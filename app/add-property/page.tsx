@@ -4,6 +4,8 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const Page = async () => {
+
+  //User is need to add a property, if not redirect to auth page
   const user = await getCurrentUser(true);
 
   if (!user) {

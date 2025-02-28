@@ -6,8 +6,11 @@ import { redirect } from "next/navigation";
 import React from "react";
 
 const page = async () => {
+
+  //get current user details to show case
   const user = await getCurrentUser();
 
+  //if not user, redirect to login page
   if (!user) {
     redirect("/auth");
   }

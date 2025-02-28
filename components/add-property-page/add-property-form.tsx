@@ -12,21 +12,21 @@ const AddPropertyForm = ({
   description = "",
   features = [],
   garage = 0,
-  id="",
+  id = "",
   image_urls = [],
   location = "",
-  owner_id="",
+  owner_id = "",
   price = "",
   size = "",
   title = "",
   type,
 }: Partial<PropertyTypes>) => {
-
+  
   const [selectedImage, setSelectedImage] = useState<string[]>(image_urls);
 
   const pathName = usePathname();
 
-  //To create a new property
+  //action to create a new property
   const [state, formAction, isPending] = useActionState(
     addProperty.bind(null, selectedImage, {
       pathName,
@@ -36,9 +36,28 @@ const AddPropertyForm = ({
     { message: [] }
   );
 
+  //show error from the action
+  const renderError = () => {
+    if (state?.message?.length > 0) {
+
+      return state?.message.map((msg, index) => (
+        <p className="text-red-500" key={index}>
+          {msg}
+        </p>
+      ));
+    }
+
+    return;
+  };
+
+
   return (
     <div className="p-5 md:px-10">
-      <p className="font-semibold">{pathName.split('/')[3] === "edit" ? "Edit Property" : "Add New Property"}</p>
+      <p className="font-semibold">
+        {pathName.split("/")[3] === "edit"
+          ? "Edit Property"
+          : "Add New Property"}
+      </p>
       <form
         action={formAction}
         className="text-[12px] max-w-[450px] flex flex-col gap-4"
@@ -129,12 +148,7 @@ const AddPropertyForm = ({
           required
         />
 
-        {state?.message?.length > 0 &&
-          state?.message.map((msg, index) => (
-            <p className="text-red-500" key={index}>
-              {msg}
-            </p>
-          ))}
+        {renderError()}
 
         <button
           type="submit"

@@ -16,6 +16,8 @@ const ContactAgent = ({
   isAdmin: boolean;
   property_details:PropertyTypes
 }) => {
+  
+  //form action to send mail
   const [state, formAction, isPending] = useActionState(sendMail.bind(null,property_details), "");
   const { data: session, status } = useSession();
 

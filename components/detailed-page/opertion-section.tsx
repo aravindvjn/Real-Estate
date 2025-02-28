@@ -37,13 +37,17 @@ const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
 
   return (
     <div className="pt-4">
+
       <Heading text="Manage Property" />
+
       <div className="flex gap-3">
+
         {!isAdmin && (
           <div className="text-blue-500 flex flex-col gap-2 px-5 py-2 bg-blue-200 border border-blue-700 rounded sm:w-fit">
             <Link href={`/properties/${id}/edit`}>Edit Post</Link>
           </div>
         )}
+
         <button
           className="bg-red-500 px-5 py-2 border border-red-600 text-white rounded"
           onClick={() => setShowPopUp("delete")}
@@ -119,11 +123,13 @@ const OperationSection = ({ isAdmin }: { isAdmin: boolean }) => {
             document.body
           )}
       </div>
+
       {isAdmin && (
         <p className="py-2 text-green-500">
           As an admin you can manage this post.
         </p>
       )}
+      
     </div>
   );
 };

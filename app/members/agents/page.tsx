@@ -7,10 +7,13 @@ interface PageProps {
 }
 
 const Page = async ({ searchParams }: PageProps) => {
+
+  //extract type of agent from the searchparams
   const { type } = await searchParams;
 
   let agents: UserType[] = [];
 
+  //get agent details conditionally.
   if (type === "public") {
     agents = await getAgents();
   } else {

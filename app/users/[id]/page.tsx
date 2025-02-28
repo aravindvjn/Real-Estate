@@ -9,10 +9,14 @@ type ParamsProps = {
   params: Promise<{ id: string }>;
 };
 const page = async ({ params }: ParamsProps) => {
+
+  //extract id from the params
   const { id } = await params;
   if (!id) {
     notFound();
   }
+
+  //find the user by id.
   const user = await getUser(id);
   if (!user) {
     notFound();

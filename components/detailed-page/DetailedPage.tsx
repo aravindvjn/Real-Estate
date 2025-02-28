@@ -28,6 +28,7 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
   return (
     <div className="w-full p-3 md:p-5 bg-[#e1e1e1]">
       <div className="rounded overflow-hidden shadow-md md:rounded-lg bg-white">
+
         <BannerImage
           sold={property.sold}
           image={property.image_urls[0]}
@@ -35,22 +36,29 @@ const DetailedPage = ({ property }: DetailedPageProps) => {
           title={property.title}
           type={property.type}
         />
+
         <div className="px-5 md:px-10 pb-5 text-sm md:text-[16px]">
+
           <p className="sm:text-right translate-y-3 text-[12px] italic sm:text-[14px]">
             Published on {new Date(property.created_at).toDateString()}
           </p>
+
           <PropertyDetails {...property} />
           <FeatureSection
             features={[...additionalFeatures, ...property.features]}
           />
+
           <p className="text-lg md:text-xl font-bold py-2">Gallery</p>
           <ImageSlideShow image_urls={property.image_urls} />
+
           <Suspense fallback={<p>Loading...</p>}>
             <OwnerDetails 
             property_details={property} sold={property.sold} owner_id={property.owner_id!} />
           </Suspense>
+
         </div>
       </div>
+      
     </div>
   );
 };
